@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C2CFEAF72D3B8744A28C624 /* Pods_WeRide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8D5C19E084991151240AC8 /* Pods_WeRide.framework */; };
+		FE59C6AE248AE93000CCF6DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6AD248AE93000CCF6DA /* AppDelegate.swift */; };
+		FE59C6B0248AE93000CCF6DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6AF248AE93000CCF6DA /* SceneDelegate.swift */; };
+		FE59C6B5248AE93000CCF6DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE59C6B3248AE93000CCF6DA /* Main.storyboard */; };
+		FE59C6B7248AE93100CCF6DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE59C6B6248AE93100CCF6DA /* Assets.xcassets */; };
+		FE59C6BA248AE93100CCF6DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE59C6B8248AE93100CCF6DA /* LaunchScreen.storyboard */; };
+		FE59C6C9248AE9D500CCF6DA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6C8248AE9D500CCF6DA /* User.swift */; };
+		FE59C6CB248AEA1000CCF6DA /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6CA248AEA1000CCF6DA /* UserController.swift */; };
+		FE59C6CD248AEB3500CCF6DA /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6CC248AEB3500CCF6DA /* UserError.swift */; };
+		FE59C6CF248AEBF000CCF6DA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6CE248AEBF000CCF6DA /* SignInViewController.swift */; };
+		FE59C6D3248AED2700CCF6DA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE59C6D2248AED2700CCF6DA /* CloudKit.framework */; };
+		FE59C6D5248AEE8800CCF6DA /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6D4248AEE8800CCF6DA /* Ride.swift */; };
+		FE59C6D7248AEEC700CCF6DA /* RideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6D6248AEEC700CCF6DA /* RideController.swift */; };
+		FE59C6D9248AEF0200CCF6DA /* TestCreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6D8248AEF0200CCF6DA /* TestCreateRideViewController.swift */; };
+		FE59C6DC248AF20200CCF6DA /* RideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */; };
+		FE59C6DE248E9D7B00CCF6DA /* CreateMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6DD248E9D7B00CCF6DA /* CreateMapViewController.swift */; };
+		FE59C6E2248FF2D200CCF6DA /* RouteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E1248FF2D200CCF6DA /* RouteAnnotation.swift */; };
+		FE59C6E4248FFA2300CCF6DA /* RouteAnnotationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E3248FFA2300CCF6DA /* RouteAnnotationController.swift */; };
+		FE59C6E62490517500CCF6DA /* RideListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */; };
+		FE59C6E8249051E100CCF6DA /* RideListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */; };
+		FE59C6EA249141A200CCF6DA /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */; };
+		FE59C6EC2491CABC00CCF6DA /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6EB2491CABC00CCF6DA /* Emitter.swift */; };
+		FE59C6EE2491D17B00CCF6DA /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30EFCF5B972C0F6AE817CBD6 /* Pods-WeRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeRide.release.xcconfig"; path = "Target Support Files/Pods-WeRide/Pods-WeRide.release.xcconfig"; sourceTree = "<group>"; };
+		71733B4916906342A69E5193 /* Pods-WeRide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeRide.debug.xcconfig"; path = "Target Support Files/Pods-WeRide/Pods-WeRide.debug.xcconfig"; sourceTree = "<group>"; };
+		EB8D5C19E084991151240AC8 /* Pods_WeRide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeRide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE59C6AA248AE93000CCF6DA /* WeRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE59C6AD248AE93000CCF6DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE59C6AF248AE93000CCF6DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FE59C6B4248AE93000CCF6DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FE59C6B6248AE93100CCF6DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE59C6B9248AE93100CCF6DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FE59C6BB248AE93100CCF6DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE59C6C8248AE9D500CCF6DA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FE59C6CA248AEA1000CCF6DA /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		FE59C6CC248AEB3500CCF6DA /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
+		FE59C6CE248AEBF000CCF6DA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		FE59C6D0248AED2000CCF6DA /* WeRide.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeRide.entitlements; sourceTree = "<group>"; };
+		FE59C6D2248AED2700CCF6DA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FE59C6D4248AEE8800CCF6DA /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		FE59C6D6248AEEC700CCF6DA /* RideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideController.swift; sourceTree = "<group>"; };
+		FE59C6D8248AEF0200CCF6DA /* TestCreateRideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateRideViewController.swift; sourceTree = "<group>"; };
+		FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAnnotation.swift; sourceTree = "<group>"; };
+		FE59C6DD248E9D7B00CCF6DA /* CreateMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMapViewController.swift; sourceTree = "<group>"; };
+		FE59C6E1248FF2D200CCF6DA /* RouteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAnnotation.swift; sourceTree = "<group>"; };
+		FE59C6E3248FFA2300CCF6DA /* RouteAnnotationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAnnotationController.swift; sourceTree = "<group>"; };
+		FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListTableViewCell.swift; sourceTree = "<group>"; };
+		FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListTableViewController.swift; sourceTree = "<group>"; };
+		FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
+		FE59C6EB2491CABC00CCF6DA /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
+		FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FE59C6A7248AE93000CCF6DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE59C6D3248AED2700CCF6DA /* CloudKit.framework in Frameworks */,
+				4C2CFEAF72D3B8744A28C624 /* Pods_WeRide.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF9EB0272DD28E408492FB92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71733B4916906342A69E5193 /* Pods-WeRide.debug.xcconfig */,
+				30EFCF5B972C0F6AE817CBD6 /* Pods-WeRide.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE59C6A1248AE93000CCF6DA = {
+			isa = PBXGroup;
+			children = (
+				FE59C6AC248AE93000CCF6DA /* WeRide */,
+				FE59C6AB248AE93000CCF6DA /* Products */,
+				FE59C6D1248AED2700CCF6DA /* Frameworks */,
+				DF9EB0272DD28E408492FB92 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		FE59C6AB248AE93000CCF6DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6AA248AE93000CCF6DA /* WeRide.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE59C6AC248AE93000CCF6DA /* WeRide */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6D0248AED2000CCF6DA /* WeRide.entitlements */,
+				FE59C6C5248AE9AF00CCF6DA /* Helpers+Extensions */,
+				FE59C6C4248AE9A900CCF6DA /* Models */,
+				FE59C6C3248AE9A200CCF6DA /* Controllers */,
+				FE59C6C2248AE99E00CCF6DA /* Views */,
+				FE59C6C1248AE95000CCF6DA /* Resorces */,
+			);
+			path = WeRide;
+			sourceTree = "<group>";
+		};
+		FE59C6C1248AE95000CCF6DA /* Resorces */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6AD248AE93000CCF6DA /* AppDelegate.swift */,
+				FE59C6AF248AE93000CCF6DA /* SceneDelegate.swift */,
+				FE59C6B6248AE93100CCF6DA /* Assets.xcassets */,
+				FE59C6B8248AE93100CCF6DA /* LaunchScreen.storyboard */,
+				FE59C6BB248AE93100CCF6DA /* Info.plist */,
+			);
+			path = Resorces;
+			sourceTree = "<group>";
+		};
+		FE59C6C2248AE99E00CCF6DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6DA248AF1CF00CCF6DA /* Annotations */,
+				FE59C6B3248AE93000CCF6DA /* Main.storyboard */,
+				FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FE59C6C3248AE9A200CCF6DA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6C7248AE9C300CCF6DA /* ModelControllers */,
+				FE59C6D8248AEF0200CCF6DA /* TestCreateRideViewController.swift */,
+				FE59C6C6248AE9BD00CCF6DA /* ViewControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FE59C6C4248AE9A900CCF6DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6C8248AE9D500CCF6DA /* User.swift */,
+				FE59C6D4248AEE8800CCF6DA /* Ride.swift */,
+				FE59C6E1248FF2D200CCF6DA /* RouteAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FE59C6C5248AE9AF00CCF6DA /* Helpers+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6CC248AEB3500CCF6DA /* UserError.swift */,
+				FE59C6EB2491CABC00CCF6DA /* Emitter.swift */,
+			);
+			path = "Helpers+Extensions";
+			sourceTree = "<group>";
+		};
+		FE59C6C6248AE9BD00CCF6DA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6CE248AEBF000CCF6DA /* SignInViewController.swift */,
+				FE59C6DD248E9D7B00CCF6DA /* CreateMapViewController.swift */,
+				FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */,
+				FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */,
+				FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FE59C6C7248AE9C300CCF6DA /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6CA248AEA1000CCF6DA /* UserController.swift */,
+				FE59C6D6248AEEC700CCF6DA /* RideController.swift */,
+				FE59C6E3248FFA2300CCF6DA /* RouteAnnotationController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		FE59C6D1248AED2700CCF6DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6D2248AED2700CCF6DA /* CloudKit.framework */,
+				EB8D5C19E084991151240AC8 /* Pods_WeRide.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE59C6DA248AF1CF00CCF6DA /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FE59C6A9248AE93000CCF6DA /* WeRide */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE59C6BE248AE93100CCF6DA /* Build configuration list for PBXNativeTarget "WeRide" */;
+			buildPhases = (
+				42B21B3C37F624090F83CAC2 /* [CP] Check Pods Manifest.lock */,
+				FE59C6A6248AE93000CCF6DA /* Sources */,
+				FE59C6A7248AE93000CCF6DA /* Frameworks */,
+				FE59C6A8248AE93000CCF6DA /* Resources */,
+				A0894DE8AE688A8FA230AA74 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeRide;
+			productName = WeRide;
+			productReference = FE59C6AA248AE93000CCF6DA /* WeRide.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE59C6A2248AE93000CCF6DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Ian Richins";
+				TargetAttributes = {
+					FE59C6A9248AE93000CCF6DA = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = FE59C6A5248AE93000CCF6DA /* Build configuration list for PBXProject "WeRide" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FE59C6A1248AE93000CCF6DA;
+			productRefGroup = FE59C6AB248AE93000CCF6DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FE59C6A9248AE93000CCF6DA /* WeRide */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FE59C6A8248AE93000CCF6DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE59C6BA248AE93100CCF6DA /* LaunchScreen.storyboard in Resources */,
+				FE59C6B7248AE93100CCF6DA /* Assets.xcassets in Resources */,
+				FE59C6B5248AE93000CCF6DA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42B21B3C37F624090F83CAC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeRide-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0894DE8AE688A8FA230AA74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeRide/Pods-WeRide-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeRide/Pods-WeRide-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeRide/Pods-WeRide-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FE59C6A6248AE93000CCF6DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE59C6DC248AF20200CCF6DA /* RideAnnotation.swift in Sources */,
+				FE59C6C9248AE9D500CCF6DA /* User.swift in Sources */,
+				FE59C6D9248AEF0200CCF6DA /* TestCreateRideViewController.swift in Sources */,
+				FE59C6E4248FFA2300CCF6DA /* RouteAnnotationController.swift in Sources */,
+				FE59C6AE248AE93000CCF6DA /* AppDelegate.swift in Sources */,
+				FE59C6EC2491CABC00CCF6DA /* Emitter.swift in Sources */,
+				FE59C6CF248AEBF000CCF6DA /* SignInViewController.swift in Sources */,
+				FE59C6DE248E9D7B00CCF6DA /* CreateMapViewController.swift in Sources */,
+				FE59C6E62490517500CCF6DA /* RideListTableViewCell.swift in Sources */,
+				FE59C6CB248AEA1000CCF6DA /* UserController.swift in Sources */,
+				FE59C6CD248AEB3500CCF6DA /* UserError.swift in Sources */,
+				FE59C6B0248AE93000CCF6DA /* SceneDelegate.swift in Sources */,
+				FE59C6D5248AEE8800CCF6DA /* Ride.swift in Sources */,
+				FE59C6EA249141A200CCF6DA /* MapDetailsViewController.swift in Sources */,
+				FE59C6E8249051E100CCF6DA /* RideListTableViewController.swift in Sources */,
+				FE59C6E2248FF2D200CCF6DA /* RouteAnnotation.swift in Sources */,
+				FE59C6D7248AEEC700CCF6DA /* RideController.swift in Sources */,
+				FE59C6EE2491D17B00CCF6DA /* PhotoPickerViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FE59C6B3248AE93000CCF6DA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE59C6B4248AE93000CCF6DA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FE59C6B8248AE93100CCF6DA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE59C6B9248AE93100CCF6DA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FE59C6BC248AE93100CCF6DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FE59C6BD248AE93100CCF6DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FE59C6BF248AE93100CCF6DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71733B4916906342A69E5193 /* Pods-WeRide.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WeRide/WeRide.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GJL99WNL67;
+				INFOPLIST_FILE = WeRide/Resorces/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.richins.WeRide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FE59C6C0248AE93100CCF6DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30EFCF5B972C0F6AE817CBD6 /* Pods-WeRide.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WeRide/WeRide.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GJL99WNL67;
+				INFOPLIST_FILE = WeRide/Resorces/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.richins.WeRide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FE59C6A5248AE93000CCF6DA /* Build configuration list for PBXProject "WeRide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE59C6BC248AE93100CCF6DA /* Debug */,
+				FE59C6BD248AE93100CCF6DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE59C6BE248AE93100CCF6DA /* Build configuration list for PBXNativeTarget "WeRide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE59C6BF248AE93100CCF6DA /* Debug */,
+				FE59C6C0248AE93100CCF6DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FE59C6A2248AE93000CCF6DA /* Project object */;
+}
