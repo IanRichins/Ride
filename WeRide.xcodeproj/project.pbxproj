@@ -30,6 +30,9 @@
 		FE59C6EA249141A200CCF6DA /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */; };
 		FE59C6EC2491CABC00CCF6DA /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6EB2491CABC00CCF6DA /* Emitter.swift */; };
 		FE59C6EE2491D17B00CCF6DA /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */; };
+		FE59C6F12492BD6B00CCF6DA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6F02492BD6B00CCF6DA /* CustomButton.swift */; };
+		FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */; };
+		FE59C6F52492F5DC00CCF6DA /* RideHomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		FE59C6EB2491CABC00CCF6DA /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
 		FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		FE59C6F02492BD6B00CCF6DA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RideHomeScreen.storyboard; sourceTree = "<group>"; };
+		FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHomeScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				FE59C6D0248AED2000CCF6DA /* WeRide.entitlements */,
+				FE59C6EF2492BD3200CCF6DA /* CustomControls+Effects */,
 				FE59C6C5248AE9AF00CCF6DA /* Helpers+Extensions */,
 				FE59C6C4248AE9A900CCF6DA /* Models */,
 				FE59C6C3248AE9A200CCF6DA /* Controllers */,
@@ -131,9 +138,10 @@
 		FE59C6C2248AE99E00CCF6DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FE59C6DA248AF1CF00CCF6DA /* Annotations */,
 				FE59C6B3248AE93000CCF6DA /* Main.storyboard */,
+				FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */,
 				FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */,
+				FE59C6DA248AF1CF00CCF6DA /* Annotations */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				FE59C6CC248AEB3500CCF6DA /* UserError.swift */,
-				FE59C6EB2491CABC00CCF6DA /* Emitter.swift */,
 			);
 			path = "Helpers+Extensions";
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 				FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */,
 				FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */,
 				FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */,
+				FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -204,6 +212,15 @@
 				FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */,
 			);
 			path = Annotations;
+			sourceTree = "<group>";
+		};
+		FE59C6EF2492BD3200CCF6DA /* CustomControls+Effects */ = {
+			isa = PBXGroup;
+			children = (
+				FE59C6EB2491CABC00CCF6DA /* Emitter.swift */,
+				FE59C6F02492BD6B00CCF6DA /* CustomButton.swift */,
+			);
+			path = "CustomControls+Effects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE59C6BA248AE93100CCF6DA /* LaunchScreen.storyboard in Resources */,
+				FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */,
 				FE59C6B7248AE93100CCF6DA /* Assets.xcassets in Resources */,
 				FE59C6B5248AE93000CCF6DA /* Main.storyboard in Resources */,
 			);
@@ -322,6 +340,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE59C6DC248AF20200CCF6DA /* RideAnnotation.swift in Sources */,
+				FE59C6F52492F5DC00CCF6DA /* RideHomeScreenViewController.swift in Sources */,
+				FE59C6F12492BD6B00CCF6DA /* CustomButton.swift in Sources */,
 				FE59C6C9248AE9D500CCF6DA /* User.swift in Sources */,
 				FE59C6D9248AEF0200CCF6DA /* TestCreateRideViewController.swift in Sources */,
 				FE59C6E4248FFA2300CCF6DA /* RouteAnnotationController.swift in Sources */,

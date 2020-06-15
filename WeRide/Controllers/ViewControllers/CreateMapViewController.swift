@@ -14,13 +14,8 @@ class CreateMapViewController: UIViewController {
     
     //MARK: -Outlets
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var annoTitleTextField: UITextField!
-    @IBOutlet weak var annoSubtitleTextField: UITextField!
     @IBOutlet weak var rideTitleTextField: UITextField!
-    @IBOutlet weak var addDetailsButton: UIButton!
-    @IBOutlet weak var saveDetailsButton: UIButton!
-    
+    @IBOutlet weak var addressLabel: UILabel!
     
     //MARK: -Properties
     let locationManager = CLLocationManager()
@@ -37,63 +32,21 @@ class CreateMapViewController: UIViewController {
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpViews()
+        self.mapView.delegate = self
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
     }
     
     //MARK: -Actions
-    @IBAction func startButtonTapped(_ sender: Any) {
-        rideTitleTextField.isHidden = true
-        startButton.isHidden = true
-        addDetailsButton.isHidden = false
-       addAnnotationPin()
-    
-//        let title = "test center location"
-//        let subtitle = "for Ride"
-//        RideController.shared.createRideWith(coodinates: centerLocaton, title: title, subtitle: subtitle) { (result) in
-//            switch result {
-//            case .success(_):
-//                DispatchQueue.main.async {
-//                    self.annoSubtitleTextField.isHidden = false
-//                    self.annoTitleTextField.isHidden = false
-//                    self.routeCoordinates.append(centerLocaton)
-//                    self.fetchRideAndAddAnnotation()
-//                    print("Ride Coordinate Saved!!")
-//                }
-//            case .failure(_):
-//                print("error saving the ride coordinates")
-//            }
-//        }
-    }
-    
-    @IBAction func addDetailsButtonTapped(_ sender: Any) {
-        annoTitleTextField.isHidden = false
-        annoSubtitleTextField.isHidden = false
-        saveDetailsButton.isHidden = false
+    @IBAction func LongTapGestureTapped(_ sender: Any) {
+        addAnnotationPin()
         
     }
-    
-    @IBAction func saveDetailsButtonTapped(_ sender: Any) {
-       guard let annotationTitle = self.annoTitleTextField.text,
-        let annotationSubtitle = self.annoSubtitleTextField.text else { return }
-        let annoLat = self.onScreenAnnotations[0].coordinate.latitude
-        let annoLon = self.onScreenAnnotations[0].coordinate.longitude
-        let coordinate = CLLocation(latitude: annoLat, longitude: annoLon)
-        self.onScreenAnnotations[0].title = annotationTitle
-        self.onScreenAnnotations[0].subtitle = annotationSubtitle
-        self.annotationTitles.append(annotationTitle)
-        self.annotationSubtitles.append(annotationSubtitle)
-        self.routeCoordinates.append(coordinate)
-        self.addDetailsButton.isHidden = true
-        self.annoTitleTextField.isHidden = true
-        self.annoSubtitleTextField.isHidden = true
-        self.addDetailsButton.isHidden = true
-        self.saveDetailsButton.isHidden = true
-        self.startButton.isHidden = false
-        self.rideTitleTextField.isHidden = false
         
-        self.mapView.reloadInputViews()
-    }
-    
     @IBAction func saveButtonTapped(_ sender: Any) {
         let title = rideTitleTextField.text
         RideController.shared.createRideWith(annotationCoordinates: routeCoordinates, rideTitle: title, annotationTitles: annotationTitles, annotationSubtitles: annotationSubtitles) { (result) in
@@ -107,52 +60,34 @@ class CreateMapViewController: UIViewController {
                 print("Unable to save this ride to the cloud")
             }
         }
-    
     }
     
     //MARK: -Helper Methods
+
+    func drawPolyline() {
+        var annotationCoordinates: [CLLocationCoordinate2D] = []
+        if onScreenAnnotations.count >= 1 {
+            for anno in onScreenAnnotations {
+               let coord = anno.coordinate
+                annotationCoordinates.append(coord)
+                
+                let polyline = MKPolyline(coordinates: annotationCoordinates, count: annotationCoordinates.count)
+                
+                mapView.addOverlay(polyline)
+                mapView.reloadInputViews()
+            }
+        }
+    }
     
     func addAnnotationPin() {
         let annotation = MKPointAnnotation()
+        let annotationCoordinates = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         annotation.coordinate = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         
         mapView.addAnnotation(annotation)
+        self.routeCoordinates.append(annotationCoordinates)
         self.onScreenAnnotations.append(annotation)
-//        let routeCoordinate = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-//        routeCoordinates.append(routeCoordinate)
-    }
-    
-    //TODO: -Maybe move this
-    
-//    func createRouteAnnotationFor(rides: [Ride]) {
-//        var annotations = self.annotations
-//        for ride in rides {
-//            let annotation = RouteAnnotation(ride: ride)
-//            annotations.append(annotation)
-//        }
-//        mapView.addAnnotations(annotations)
-//    }
-//
-//    func fetchRideAndAddAnnotation() {
-//        RideController.shared.fetchRide { (result) in
-//            switch result {
-//            case .success(_):
-//                DispatchQueue.main.async {
-//                    self.createRouteAnnotationFor(rides: RideController.shared.currentRide)
-//                    self.reloadInputViews()
-//                }
-//            case .failure(_):
-//                print("Could not find annotations")
-//            }
-//        }
-//    }
-    
-    func setUpViews() {
-        startButton.layer.cornerRadius = startButton.frame.height / 5
-        annoTitleTextField.isHidden = true
-        annoSubtitleTextField.isHidden = true
-        addDetailsButton.isHidden = true
-        saveDetailsButton.isHidden = true
+        drawPolyline()
     }
     
     func checkLocationAuthorization() {
@@ -195,15 +130,45 @@ class CreateMapViewController: UIViewController {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func getDirections() {
+        let location = self.routeCoordinates[0].coordinate
+            //TODO: Alert user we dont have their current location
+        
+        let request = createDirectionsRequest(from: location)
+        let directions = MKDirections(request: request)
+        
+        
+        directions.calculate { [unowned self] (response, error) in
+            if let error = error {
+                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
+            }
+            guard let response = response else { return } //TODO: Show response not available in alert
+            
+            
+            for route in response.routes {
+                // these are the instructions
+                //    let steps = route.steps
+                // ADDS THE BLUE LINES.
+                self.mapView.addOverlay(route.polyline)
+                // resizes the map to show the entire route
+                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
+        }
+    }
+    
+    func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
+        let destinationCoordinate = self.routeCoordinates[1].coordinate
+        let startingLocation = MKPlacemark(coordinate: coordinate)
+        let destination = MKPlacemark(coordinate: destinationCoordinate)
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: startingLocation)
+        request.destination = MKMapItem(placemark: destination)
+        request.transportType = .automobile
+        // request.requestsAlternateRoutes = true
+        
+        return request
+    }
     
 } // END OF CLASS
 
@@ -219,5 +184,40 @@ extension CreateMapViewController: CLLocationManagerDelegate {
 }
 
 extension CreateMapViewController: MKMapViewDelegate {
+
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+             let center = getCenterLocation(for: mapView)
+            let geoCoder = CLGeocoder()
+            
+            guard let previouseLocation = self.previouseLocation else { return }
+            
+            guard center.distance(from: previouseLocation) > 50 else { return }
+            self.previouseLocation = center
+            
+            geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
+                }
+                guard let placemark = placemarks?.first else {
+                    // TODO: Create an alert to inform the user
+                    return
+                }
+                
+                let streetNumber = placemark.subThoroughfare ?? ""
+                let streetName = placemark.thoroughfare ?? ""
+                
+                DispatchQueue.main.async {
+                    self.addressLabel.text = "\(streetNumber) \(streetName)"
+                }
+            }
+        }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+           let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+           renderer.strokeColor = .green
+           return renderer
+       }
 }

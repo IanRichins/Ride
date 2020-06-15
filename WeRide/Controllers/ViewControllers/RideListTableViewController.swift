@@ -15,15 +15,19 @@ class RideListTableViewController: UITableViewController {
         loadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        loadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        loadData()
+//    }
     
-   @objc func loadData() {
+    func loadData() {
         RideController.shared.fetchRide { (result) in
             switch result {
             case .success(let rides):
                 RideController.shared.rides = rides
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             case .failure(let error):
                 print("There was an error fetching rides")
                 print(error.localizedDescription)
@@ -48,8 +52,7 @@ class RideListTableViewController: UITableViewController {
         let ride = RideController.shared.rides[indexPath.row]
         
         cell.ride = ride
-        
-
+    
         return cell
     }
     

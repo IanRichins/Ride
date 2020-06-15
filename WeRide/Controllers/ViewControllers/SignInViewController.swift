@@ -12,9 +12,7 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-   
     @IBOutlet weak var profilePhotoContainerView: UIView!
-    
     
     var image: UIImage?
     
@@ -24,17 +22,32 @@ class SignInViewController: UIViewController {
         setUpViews()
         addEmitter()
     }
-    @IBAction func signInButtonTapped(_ sender: Any) {
+    
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+        sender.pulse()
+      //  guard UserController.shared.currentUser == nil else { self.presentRideHomeStoryboard() ; return }
         guard let username = usernameTextField.text, !username.isEmpty else { return }
         UserController.shared.createUserWith(username, profilePhoto: image) { (result) in
             switch result {
             case .success(let user):
                 guard let user = user else {return}
                 UserController.shared.currentUser = user
+                self.presentRideHomeStoryboard()
             case .failure(let error):
+                sender.shake()
                 print("There was an error creating a user")
                 print(error.localizedDescription)
+                
             }
+        }
+    }
+    
+    func presentRideHomeStoryboard() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
+            guard let viewController = storyboard.instantiateInitialViewController() else { return }
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true)
         }
     }
     
@@ -43,6 +56,7 @@ class SignInViewController: UIViewController {
         profilePhotoContainerView.layer.cornerRadius = profilePhotoContainerView.frame.height / 2
         profilePhotoContainerView.clipsToBounds = true
         usernameTextField.layer.cornerRadius = usernameTextField.frame.height / 2
+
     }
     
     func addEmitter() {
@@ -55,17 +69,17 @@ class SignInViewController: UIViewController {
     func fetchUser() {
         UserController.shared.fetchUser { (result) in
             switch result {
-            case .success(_):
+            case .success(let user):
                 print("fetched user successfully")
-                //  guard let user = user else { return }
-                // UserController.shared.currentUser = user
+                self.presentRideHomeStoryboard()
+                  guard let user = user else { return }
+                 UserController.shared.currentUser = user
                 
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
     
      // MARK: - Navigation
      
