@@ -22,7 +22,7 @@ class RideListTableViewCell: UITableViewCell {
     
     func setupViews() {
         rideTitleLabel.text = ride?.rideTitle
-        rideCellImageView.image = #imageLiteral(resourceName: "Flag")
+        rideCellImageView.image = #imageLiteral(resourceName: "CheckeredFlag")
     }
 
 }

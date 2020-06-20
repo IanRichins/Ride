@@ -8,15 +8,16 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 
 class MapDetailsViewController: UIViewController {
-
+    
     let locationManager = CLLocationManager()
     var annotations = [MKPointAnnotation]()
-    var startingLocaton = MKPointAnnotation()
-    var destinationLocation = MKPointAnnotation()
     var annotationCoords: [CLLocationCoordinate2D] = []
+    var startLocation: CLLocationCoordinate2D?
+    var destinationLocation: CLLocationCoordinate2D?
     
     @IBOutlet weak var detailMapView: MKMapView!
     @IBOutlet weak var rideTitleLabel: UILabel!
@@ -24,21 +25,25 @@ class MapDetailsViewController: UIViewController {
     //MARK: -Landinig Pad
     var ride: Ride?
     
-   var annotationCoordinates = [CLLocation]()
+    var annotationCoordinates = [CLLocation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
-       // getDirections()
-       // addPolyline()
+         detailMapView.reloadInputViews()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchAnnotatoinsAndAddToMap()
+        drawDirections()
     }
     
     @IBAction func mapViewTapped(_ sender: Any) {
-     
+        
+    }
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     func setUpViews() {
@@ -46,13 +51,11 @@ class MapDetailsViewController: UIViewController {
         rideTitleLabel.text = ride.rideTitle
         let coordinatesArray = ride.annotationCoordinates
         for coordinates in coordinatesArray {
-           let annotationCoordinate = coordinates.coordinate
+            let annotationCoordinate = coordinates.coordinate
             annotationCoords.append(annotationCoordinate)
         }
-        let polyline = MKPolyline(coordinates: annotationCoords, count: annotationCoords.count)
-        detailMapView.addOverlay(polyline)
     }
-
+    
     func fetchAnnotatoinsAndAddToMap() {
         
         var annotationCords = CLLocationCoordinate2D()
@@ -64,16 +67,29 @@ class MapDetailsViewController: UIViewController {
             let annoLon = coords.coordinate.longitude
             annotationCords = CLLocationCoordinate2D(latitude: annoLat, longitude: annoLon)
             annotation.coordinate = annotationCords
-
+            
             annotations.append(annotation)
         }
         
         detailMapView.addAnnotations(annotations)
     }
     
+    func drawDirections() {
+        if annotations.count >= 1 {
+            for annotation in annotations {
+                startLocation = annotation.coordinate
+                self.getDirections()
+                detailMapView.reloadInputViews()
+                destinationLocation = annotation.coordinate
+                
+            }
+        }
+    }
+    
     func getDirections() {
-       guard let location = locationManager.location?.coordinate else  { return }
-            //TODO: Alert user we dont have their current location
+        
+        guard let location = startLocation else { return }
+        //TODO: Alert user we dont have their current location
         
         let request = createDirectionsRequest(from: location)
         let directions = MKDirections(request: request)
@@ -85,19 +101,20 @@ class MapDetailsViewController: UIViewController {
             }
             guard let response = response else { return } //TODO: Show response not available in alert
             
+            
             for route in response.routes {
                 // these are the instructions
                 //    let steps = route.steps
                 // ADDS THE BLUE LINES.
                 self.detailMapView.addOverlay(route.polyline)
                 // resizes the map to show the entire route
-                self.detailMapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                // self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
     }
     
     func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
-        let destinationCoordinate = self.annotationCoords[0]
+        guard let destinationCoordinate = destinationLocation else { return MKDirections.Request() }
         let startingLocation = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)
         
@@ -110,7 +127,7 @@ class MapDetailsViewController: UIViewController {
         return request
     }
     
-}
+} // END OF CLASS
 
 extension MapDetailsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

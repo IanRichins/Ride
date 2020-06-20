@@ -8,31 +8,64 @@
 
 import UIKit
 
+
 class RideHomeScreenViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var yourRidesButton: UIButton!
     @IBOutlet weak var createRideButton: UIButton!
+
+    
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
+    @IBAction func yourRidesButtonTapped(_ sender: UIButton) {
+        sender.flash()
+    }
+    
+    @IBAction func createRideButtonTapped(_ sender: UIButton) {
+        sender.pulse()
+    }
     
     func setupViews() {
         let currentUser = UserController.shared.currentUser
         usernameLabel.text = currentUser?.username
-        userProfileImageView.image = currentUser?.profilePhoto
+        createRideButton.layer.cornerRadius = createRideButton.frame.height / 2
+        yourRidesButton.layer.cornerRadius = yourRidesButton.frame.height / 2
+//        createRideButton.backgroundColor = .green
+//        yourRidesButton.backgroundColor = .green
+        self.view.addBackground()
+//        topView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RideBackground"))
+//        bottomView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RideBackground"))
+    //    homeScreenView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RideBackground"))
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+           if segue.identifier == "toPhotoPickerVC" {
+               let destinationVC = segue.destination as? PhotoPickerViewController
+               destinationVC?.delegate = self
+           }
+        }   
+}
 
+extension UIView {
+    func addBackground() {
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let imageBackground = UIImageView(frame: CGRect(x: 0,y: 0, width: width, height: height))
+        imageBackground.image = UIImage(imageLiteralResourceName: "Background")
+        
+        imageBackground.contentMode = UIView.ContentMode.scaleToFill
+        self.addSubview(imageBackground)
+        self.sendSubviewToBack(imageBackground)
+        
+    }
+}
+extension RideHomeScreenViewController: PhotoPickerDelegate {
+    func photoPickerSelected(image: UIImage) {
+        
+        self.image = image
+    }
 }

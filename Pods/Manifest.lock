@@ -1,16 +1,20 @@
 PODS:
+  - PMSuperButton (3.0.2)
   - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
+  - PMSuperButton
   - TextFieldEffects
 
 SPEC REPOS:
   trunk:
+    - PMSuperButton
     - TextFieldEffects
 
 SPEC CHECKSUMS:
+  PMSuperButton: 72105fef415890c8792a9e5a784f75c461066f8b
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 917245b9bfe8bfbe6516a18cae8e72c1479419c3
+PODFILE CHECKSUM: 0e1febecc828f6a7d646c377749b936b82c624c3
 
 COCOAPODS: 1.9.3

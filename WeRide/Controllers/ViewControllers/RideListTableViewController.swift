@@ -34,7 +34,10 @@ class RideListTableViewController: UITableViewController {
             }
         }
     }
-
+    @IBAction func doneButtonTapped(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {

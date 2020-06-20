@@ -21,9 +21,7 @@
 		FE59C6D5248AEE8800CCF6DA /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6D4248AEE8800CCF6DA /* Ride.swift */; };
 		FE59C6D7248AEEC700CCF6DA /* RideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6D6248AEEC700CCF6DA /* RideController.swift */; };
 		FE59C6D9248AEF0200CCF6DA /* TestCreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6D8248AEF0200CCF6DA /* TestCreateRideViewController.swift */; };
-		FE59C6DC248AF20200CCF6DA /* RideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */; };
 		FE59C6DE248E9D7B00CCF6DA /* CreateMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6DD248E9D7B00CCF6DA /* CreateMapViewController.swift */; };
-		FE59C6E2248FF2D200CCF6DA /* RouteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E1248FF2D200CCF6DA /* RouteAnnotation.swift */; };
 		FE59C6E4248FFA2300CCF6DA /* RouteAnnotationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E3248FFA2300CCF6DA /* RouteAnnotationController.swift */; };
 		FE59C6E62490517500CCF6DA /* RideListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */; };
 		FE59C6E8249051E100CCF6DA /* RideListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */; };
@@ -33,6 +31,8 @@
 		FE59C6F12492BD6B00CCF6DA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6F02492BD6B00CCF6DA /* CustomButton.swift */; };
 		FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */; };
 		FE59C6F52492F5DC00CCF6DA /* RideHomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */; };
+		FE6E6960249A7C240009BC67 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */; };
+		FEFD90EC249AA939000B6CC6 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD90EB249AA939000B6CC6 /* DesignableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,9 +55,7 @@
 		FE59C6D4248AEE8800CCF6DA /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		FE59C6D6248AEEC700CCF6DA /* RideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideController.swift; sourceTree = "<group>"; };
 		FE59C6D8248AEF0200CCF6DA /* TestCreateRideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateRideViewController.swift; sourceTree = "<group>"; };
-		FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAnnotation.swift; sourceTree = "<group>"; };
 		FE59C6DD248E9D7B00CCF6DA /* CreateMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMapViewController.swift; sourceTree = "<group>"; };
-		FE59C6E1248FF2D200CCF6DA /* RouteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAnnotation.swift; sourceTree = "<group>"; };
 		FE59C6E3248FFA2300CCF6DA /* RouteAnnotationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAnnotationController.swift; sourceTree = "<group>"; };
 		FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListTableViewCell.swift; sourceTree = "<group>"; };
 		FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListTableViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +65,8 @@
 		FE59C6F02492BD6B00CCF6DA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RideHomeScreen.storyboard; sourceTree = "<group>"; };
 		FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHomeScreenViewController.swift; sourceTree = "<group>"; };
+		FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
+		FEFD90EB249AA939000B6CC6 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +140,8 @@
 			children = (
 				FE59C6B3248AE93000CCF6DA /* Main.storyboard */,
 				FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */,
+				FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */,
 				FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */,
-				FE59C6DA248AF1CF00CCF6DA /* Annotations */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,7 +161,6 @@
 			children = (
 				FE59C6C8248AE9D500CCF6DA /* User.swift */,
 				FE59C6D4248AEE8800CCF6DA /* Ride.swift */,
-				FE59C6E1248FF2D200CCF6DA /* RouteAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,19 +205,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FE59C6DA248AF1CF00CCF6DA /* Annotations */ = {
-			isa = PBXGroup;
-			children = (
-				FE59C6DB248AF20200CCF6DA /* RideAnnotation.swift */,
-			);
-			path = Annotations;
-			sourceTree = "<group>";
-		};
 		FE59C6EF2492BD3200CCF6DA /* CustomControls+Effects */ = {
 			isa = PBXGroup;
 			children = (
 				FE59C6EB2491CABC00CCF6DA /* Emitter.swift */,
 				FE59C6F02492BD6B00CCF6DA /* CustomButton.swift */,
+				FEFD90EB249AA939000B6CC6 /* DesignableView.swift */,
 			);
 			path = "CustomControls+Effects";
 			sourceTree = "<group>";
@@ -284,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE59C6BA248AE93100CCF6DA /* LaunchScreen.storyboard in Resources */,
+				FE6E6960249A7C240009BC67 /* PhotoPicker.storyboard in Resources */,
 				FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */,
 				FE59C6B7248AE93100CCF6DA /* Assets.xcassets in Resources */,
 				FE59C6B5248AE93000CCF6DA /* Main.storyboard in Resources */,
@@ -339,7 +332,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE59C6DC248AF20200CCF6DA /* RideAnnotation.swift in Sources */,
 				FE59C6F52492F5DC00CCF6DA /* RideHomeScreenViewController.swift in Sources */,
 				FE59C6F12492BD6B00CCF6DA /* CustomButton.swift in Sources */,
 				FE59C6C9248AE9D500CCF6DA /* User.swift in Sources */,
@@ -347,6 +339,7 @@
 				FE59C6E4248FFA2300CCF6DA /* RouteAnnotationController.swift in Sources */,
 				FE59C6AE248AE93000CCF6DA /* AppDelegate.swift in Sources */,
 				FE59C6EC2491CABC00CCF6DA /* Emitter.swift in Sources */,
+				FEFD90EC249AA939000B6CC6 /* DesignableView.swift in Sources */,
 				FE59C6CF248AEBF000CCF6DA /* SignInViewController.swift in Sources */,
 				FE59C6DE248E9D7B00CCF6DA /* CreateMapViewController.swift in Sources */,
 				FE59C6E62490517500CCF6DA /* RideListTableViewCell.swift in Sources */,
@@ -356,7 +349,6 @@
 				FE59C6D5248AEE8800CCF6DA /* Ride.swift in Sources */,
 				FE59C6EA249141A200CCF6DA /* MapDetailsViewController.swift in Sources */,
 				FE59C6E8249051E100CCF6DA /* RideListTableViewController.swift in Sources */,
-				FE59C6E2248FF2D200CCF6DA /* RouteAnnotation.swift in Sources */,
 				FE59C6D7248AEEC700CCF6DA /* RideController.swift in Sources */,
 				FE59C6EE2491D17B00CCF6DA /* PhotoPickerViewController.swift in Sources */,
 			);

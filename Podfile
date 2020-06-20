@@ -7,6 +7,6 @@ use_frameworks!
 
 
 pod 'TextFieldEffects'
-
+pod 'PMSuperButton'
 
 end

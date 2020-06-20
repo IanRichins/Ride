@@ -14,6 +14,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var profilePhotoContainerView: UIView!
     
+    
     var image: UIImage?
     
     override func viewDidLoad() {
@@ -90,7 +91,6 @@ class SignInViewController: UIViewController {
             destinationVC?.delegate = self
         }
      }
-     
     
 }
 

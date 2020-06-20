@@ -16,6 +16,7 @@ class CreateMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var rideTitleTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var searchBarStackView: UIStackView!
     
     //MARK: -Properties
     let locationManager = CLLocationManager()
@@ -25,28 +26,28 @@ class CreateMapViewController: UIViewController {
     var annotationTitles: [String] = [""]
     var annotationSubtitles: [String] = [""]
     var onScreenAnnotations: [MKPointAnnotation] = []
+    var startLocation: CLLocationCoordinate2D?
+    var destinationLocation: CLLocationCoordinate2D?
     
-   // var newAnnotations: [RouteAnnotation] = []
-   // var annotations: [RouteAnnotationHelper] = []
+    // var newAnnotations: [RouteAnnotation] = []
+    // var annotations: [RouteAnnotationHelper] = []
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
+        searchBarStackView.isHidden = true
+        
     }
     
     //MARK: -Actions
     @IBAction func LongTapGestureTapped(_ sender: Any) {
+        startLocation = routeCoordinates.last?.coordinate
         addAnnotationPin()
-        
+        getDirections()
+      //drawPolyline(for: routeCoordinates)
     }
-        
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         let title = rideTitleTextField.text
         RideController.shared.createRideWith(annotationCoordinates: routeCoordinates, rideTitle: title, annotationTitles: annotationTitles, annotationSubtitles: annotationSubtitles) { (result) in
@@ -54,7 +55,7 @@ class CreateMapViewController: UIViewController {
             case .success(_):
                 print("Successfully saved this ride to the cloud")
                 DispatchQueue.main.async {
-                     self.navigationController?.popViewController(animated: true)
+                    self.navigationController?.popViewController(animated: true)
                 }
             case .failure(_):
                 print("Unable to save this ride to the cloud")
@@ -63,19 +64,11 @@ class CreateMapViewController: UIViewController {
     }
     
     //MARK: -Helper Methods
-
-    func drawPolyline() {
-        var annotationCoordinates: [CLLocationCoordinate2D] = []
-        if onScreenAnnotations.count >= 1 {
-            for anno in onScreenAnnotations {
-               let coord = anno.coordinate
-                annotationCoordinates.append(coord)
-                
-                let polyline = MKPolyline(coordinates: annotationCoordinates, count: annotationCoordinates.count)
-                
-                mapView.addOverlay(polyline)
-                mapView.reloadInputViews()
-            }
+    func drawPolyline(for locations: [CLLocation] ) {
+        if routeCoordinates.count >= 1 {
+            let coordinates = locations.map { $0.coordinate }
+            let geoPoly = MKGeodesicPolyline(coordinates: coordinates, count: locations.count)
+            mapView.addOverlay(geoPoly)
         }
     }
     
@@ -83,11 +76,10 @@ class CreateMapViewController: UIViewController {
         let annotation = MKPointAnnotation()
         let annotationCoordinates = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         annotation.coordinate = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-        
         mapView.addAnnotation(annotation)
         self.routeCoordinates.append(annotationCoordinates)
         self.onScreenAnnotations.append(annotation)
-        drawPolyline()
+        destinationLocation = annotation.coordinate
     }
     
     func checkLocationAuthorization() {
@@ -131,8 +123,9 @@ class CreateMapViewController: UIViewController {
     }
     
     func getDirections() {
-        let location = self.routeCoordinates[0].coordinate
-            //TODO: Alert user we dont have their current location
+        
+        guard let location = startLocation else { return }
+        //TODO: Alert user we dont have their current location
         
         let request = createDirectionsRequest(from: location)
         let directions = MKDirections(request: request)
@@ -151,13 +144,13 @@ class CreateMapViewController: UIViewController {
                 // ADDS THE BLUE LINES.
                 self.mapView.addOverlay(route.polyline)
                 // resizes the map to show the entire route
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                // self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
     }
     
     func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
-        let destinationCoordinate = self.routeCoordinates[1].coordinate
+        guard let destinationCoordinate = destinationLocation else { return MKDirections.Request()}
         let startingLocation = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)
         
@@ -184,40 +177,40 @@ extension CreateMapViewController: CLLocationManagerDelegate {
 }
 
 extension CreateMapViewController: MKMapViewDelegate {
-
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-             let center = getCenterLocation(for: mapView)
-            let geoCoder = CLGeocoder()
+        let center = getCenterLocation(for: mapView)
+        let geoCoder = CLGeocoder()
+        
+        guard let previouseLocation = self.previouseLocation else { return }
+        
+        guard center.distance(from: previouseLocation) > 50 else { return }
+        self.previouseLocation = center
+        
+        geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
+            guard let self = self else { return }
             
-            guard let previouseLocation = self.previouseLocation else { return }
+            if let error = error {
+                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
+            }
+            guard let placemark = placemarks?.first else {
+                // TODO: Create an alert to inform the user
+                return
+            }
             
-            guard center.distance(from: previouseLocation) > 50 else { return }
-            self.previouseLocation = center
+            let streetNumber = placemark.subThoroughfare ?? ""
+            let streetName = placemark.thoroughfare ?? ""
             
-            geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
-                guard let self = self else { return }
-                
-                if let error = error {
-                    print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
-                }
-                guard let placemark = placemarks?.first else {
-                    // TODO: Create an alert to inform the user
-                    return
-                }
-                
-                let streetNumber = placemark.subThoroughfare ?? ""
-                let streetName = placemark.thoroughfare ?? ""
-                
-                DispatchQueue.main.async {
-                    self.addressLabel.text = "\(streetNumber) \(streetName)"
-                }
+            DispatchQueue.main.async {
+                self.addressLabel.text = "\(streetNumber) \(streetName)"
             }
         }
+    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-           let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-           renderer.strokeColor = .green
-           return renderer
-       }
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .green
+        return renderer
+    }
 }
