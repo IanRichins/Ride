@@ -12,14 +12,13 @@ class RideListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        loadData()
-//    }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadData()
+    }
+        
     func loadData() {
         RideController.shared.fetchRide { (result) in
             switch result {
@@ -34,6 +33,7 @@ class RideListTableViewController: UITableViewController {
             }
         }
     }
+    
     @IBAction func doneButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: nil)
     }
@@ -59,7 +59,6 @@ class RideListTableViewController: UITableViewController {
         return cell
     }
     
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let rideToDelete = RideController.shared.rides[indexPath.row]
@@ -78,24 +77,7 @@ class RideListTableViewController: UITableViewController {
         }    
     }
     
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMapDVC" {
             guard let indexPath = tableView.indexPathForSelectedRow,
@@ -106,5 +88,4 @@ class RideListTableViewController: UITableViewController {
         }
     }
     
-
 }

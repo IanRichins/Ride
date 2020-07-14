@@ -24,6 +24,7 @@ class SignInViewController: UIViewController {
         addEmitter()
     }
     
+    
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         sender.pulse()
       //  guard UserController.shared.currentUser == nil else { self.presentRideHomeStoryboard() ; return }
@@ -38,7 +39,6 @@ class SignInViewController: UIViewController {
                 sender.shake()
                 print("There was an error creating a user")
                 print(error.localizedDescription)
-                
             }
         }
     }
@@ -61,7 +61,7 @@ class SignInViewController: UIViewController {
     }
     
     func addEmitter() {
-        let emitter = Emitter.get(with: #imageLiteral(resourceName: "Flag"))
+        let emitter = Emitter.get(with: #imageLiteral(resourceName: "Checkered Flag no background copy"))
         emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
         emitter.emitterSize = CGSize(width: view.frame.width, height: 1)
         view.layer.insertSublayer(emitter, at: 0)
@@ -83,7 +83,6 @@ class SignInViewController: UIViewController {
     }
     
      // MARK: - Navigation
-     
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPhotoPickerVC" {

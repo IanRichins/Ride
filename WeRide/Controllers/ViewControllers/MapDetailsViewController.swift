@@ -18,30 +18,30 @@ class MapDetailsViewController: UIViewController {
     var annotationCoords: [CLLocationCoordinate2D] = []
     var startLocation: CLLocationCoordinate2D?
     var destinationLocation: CLLocationCoordinate2D?
+    var previouseLocation: CLLocation?
     
     @IBOutlet weak var detailMapView: MKMapView!
     @IBOutlet weak var rideTitleLabel: UILabel!
     
     //MARK: -Landinig Pad
-    var ride: Ride?
+    var ride: Ride? 
     
     var annotationCoordinates = [CLLocation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpViews()
-         detailMapView.reloadInputViews()
-        
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchAnnotatoinsAndAddToMap()
-        drawDirections()
+        setUpViews()
     }
     
     @IBAction func mapViewTapped(_ sender: Any) {
         
     }
+    
     @IBAction func doneButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -67,11 +67,12 @@ class MapDetailsViewController: UIViewController {
             let annoLon = coords.coordinate.longitude
             annotationCords = CLLocationCoordinate2D(latitude: annoLat, longitude: annoLon)
             annotation.coordinate = annotationCords
-            
             annotations.append(annotation)
+          
         }
         
         detailMapView.addAnnotations(annotations)
+        drawDirections()
     }
     
     func drawDirections() {
@@ -81,7 +82,6 @@ class MapDetailsViewController: UIViewController {
                 self.getDirections()
                 detailMapView.reloadInputViews()
                 destinationLocation = annotation.coordinate
-                
             }
         }
     }
@@ -108,7 +108,7 @@ class MapDetailsViewController: UIViewController {
                 // ADDS THE BLUE LINES.
                 self.detailMapView.addOverlay(route.polyline)
                 // resizes the map to show the entire route
-                // self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+               //  self.detailMapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
     }
@@ -127,9 +127,46 @@ class MapDetailsViewController: UIViewController {
         return request
     }
     
+    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+           let latitude = mapView.centerCoordinate.latitude
+           let longitude = mapView.centerCoordinate.longitude
+           
+           return CLLocation(latitude: latitude, longitude: longitude)
+       }
+    
 } // END OF CLASS
 
 extension MapDetailsViewController: MKMapViewDelegate {
+    
+//    func  mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        let center = getCenterLocation(for: mapView)
+//        let geoCoder = CLGeocoder()
+//
+//        guard let previouseLocation = self.previouseLocation else { return }
+//
+//        guard center.distance(from: previouseLocation) > 50 else { return }
+//        self.previouseLocation = center
+//
+//        geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
+//            guard let self = self else { return }
+//
+//            if let error = error {
+//                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
+//            }
+//            guard let placemark = placemarks?.first else {
+//                // TODO: Create an alert to inform the user
+//                return
+//            }
+            
+//            let streetNumber = placemark.subThoroughfare ?? ""
+//            let streetName = placemark.thoroughfare ?? ""
+            
+//            DispatchQueue.main.async {
+//                self.addressLabel.text = "\(streetNumber) \(streetName)"
+//            }
+//        }
+//    }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .green

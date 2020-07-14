@@ -7,6 +7,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--PhotoPicker-->
+        <scene sceneID="MKQ-7k-KKq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PhotoPicker" id="WN0-WX-ekQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="pzx-8A-wxD"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1na-Tf-GFr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423" y="-485"/>
+        </scene>
         <!--Ride Home Screen View Controller-->
         <scene sceneID="vGi-lY-k63">
             <objects>
@@ -70,7 +80,7 @@
                                                         <color key="value" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
-                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" red="0.10449651628732681" green="0.56624746322631836" blue="0.088862769305706024" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="gradientHorizontal" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="animatedScaleWhenHighlighted">
@@ -205,8 +215,10 @@
                     <navigationItem key="navigationItem" id="7gK-4M-ry2"/>
                     <connections>
                         <outlet property="createRideButton" destination="7Yz-kt-fac" id="otV-Ut-2IA"/>
+                        <outlet property="photoPickerContainerView" destination="epc-Ab-L5E" id="nKU-xu-W9s"/>
                         <outlet property="usernameLabel" destination="EGy-Ia-P9W" id="2ev-sb-rYw"/>
                         <outlet property="yourRidesButton" destination="Dcm-vQ-3Xx" id="XEb-Jj-8l7"/>
+                        <segue destination="WN0-WX-ekQ" kind="show" id="rV4-P7-Xli"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWz-wc-6NL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

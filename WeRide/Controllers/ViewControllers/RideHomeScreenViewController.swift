@@ -13,7 +13,8 @@ class RideHomeScreenViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var yourRidesButton: UIButton!
     @IBOutlet weak var createRideButton: UIButton!
-
+    @IBOutlet weak var photoPickerContainerView: UIView!
+    
     
     var image: UIImage?
     
@@ -34,6 +35,8 @@ class RideHomeScreenViewController: UIViewController {
         usernameLabel.text = currentUser?.username
         createRideButton.layer.cornerRadius = createRideButton.frame.height / 2
         yourRidesButton.layer.cornerRadius = yourRidesButton.frame.height / 2
+        photoPickerContainerView.layer.cornerRadius = photoPickerContainerView.frame.height / 2
+        
 //        createRideButton.backgroundColor = .green
 //        yourRidesButton.backgroundColor = .green
         self.view.addBackground()

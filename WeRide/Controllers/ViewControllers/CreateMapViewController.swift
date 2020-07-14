@@ -44,7 +44,7 @@ class CreateMapViewController: UIViewController {
     @IBAction func LongTapGestureTapped(_ sender: Any) {
         startLocation = routeCoordinates.last?.coordinate
         addAnnotationPin()
-        getDirections()
+//        getDirections()
       //drawPolyline(for: routeCoordinates)
     }
     
@@ -69,6 +69,7 @@ class CreateMapViewController: UIViewController {
             let coordinates = locations.map { $0.coordinate }
             let geoPoly = MKGeodesicPolyline(coordinates: coordinates, count: locations.count)
             mapView.addOverlay(geoPoly)
+           // self.mapView.reloadInputViews()
         }
     }
     
@@ -80,6 +81,8 @@ class CreateMapViewController: UIViewController {
         self.routeCoordinates.append(annotationCoordinates)
         self.onScreenAnnotations.append(annotation)
         destinationLocation = annotation.coordinate
+        getDirections()
+        self.mapView.reloadInputViews()
     }
     
     func checkLocationAuthorization() {
