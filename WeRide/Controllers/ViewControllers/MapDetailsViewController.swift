@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
 class MapDetailsViewController: UIViewController {
     
     let locationManager = CLLocationManager()
@@ -24,13 +23,13 @@ class MapDetailsViewController: UIViewController {
     @IBOutlet weak var rideTitleLabel: UILabel!
     
     //MARK: -Landinig Pad
-    var ride: Ride? 
+    var ride: Ride?
     
     var annotationCoordinates = [CLLocation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        self.loadViewIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,22 +56,19 @@ class MapDetailsViewController: UIViewController {
     }
     
     func fetchAnnotatoinsAndAddToMap() {
-        
-        var annotationCords = CLLocationCoordinate2D()
-        
         guard let ride = ride else { return }
         for coords in ride.annotationCoordinates {
+            var annotationCords = CLLocationCoordinate2D()
             let annotation = MKPointAnnotation()
             let annoLat = coords.coordinate.latitude
             let annoLon = coords.coordinate.longitude
             annotationCords = CLLocationCoordinate2D(latitude: annoLat, longitude: annoLon)
             annotation.coordinate = annotationCords
             annotations.append(annotation)
-          
         }
         
         detailMapView.addAnnotations(annotations)
-        drawDirections()
+          drawDirections()
     }
     
     func drawDirections() {

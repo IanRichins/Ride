@@ -82,7 +82,7 @@ class CreateMapViewController: UIViewController {
         self.onScreenAnnotations.append(annotation)
         destinationLocation = annotation.coordinate
         getDirections()
-        self.mapView.reloadInputViews()
+      //  self.mapView.reloadInputViews()
     }
     
     func checkLocationAuthorization() {

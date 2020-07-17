@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class RideHomeScreenViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var yourRidesButton: UIButton!
@@ -22,6 +21,7 @@ class RideHomeScreenViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
+    
     @IBAction func yourRidesButtonTapped(_ sender: UIButton) {
         sender.flash()
     }
@@ -36,14 +36,9 @@ class RideHomeScreenViewController: UIViewController {
         createRideButton.layer.cornerRadius = createRideButton.frame.height / 2
         yourRidesButton.layer.cornerRadius = yourRidesButton.frame.height / 2
         photoPickerContainerView.layer.cornerRadius = photoPickerContainerView.frame.height / 2
-        
-//        createRideButton.backgroundColor = .green
-//        yourRidesButton.backgroundColor = .green
         self.view.addBackground()
-//        topView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RideBackground"))
-//        bottomView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RideBackground"))
-    //    homeScreenView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RideBackground"))
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.identifier == "toPhotoPickerVC" {
                let destinationVC = segue.destination as? PhotoPickerViewController
