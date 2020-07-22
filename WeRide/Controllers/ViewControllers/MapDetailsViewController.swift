@@ -13,7 +13,6 @@ import CoreLocation
 class MapDetailsViewController: UIViewController {
     
     let locationManager = CLLocationManager()
-    var annotations = [MKPointAnnotation]()
     var annotationCoords: [CLLocationCoordinate2D] = []
     var startLocation: CLLocationCoordinate2D?
     var destinationLocation: CLLocationCoordinate2D?
@@ -25,18 +24,17 @@ class MapDetailsViewController: UIViewController {
     //MARK: -Landinig Pad
     var ride: Ride?
     
-    var annotationCoordinates = [CLLocation]()
-    
+    //MARK: -LifeCyles
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadViewIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchAnnotatoinsAndAddToMap()
+        fetchAnnotationsAndDrawRoute()
         setUpViews()
     }
     
+    //MARK: -Actions
     @IBAction func mapViewTapped(_ sender: Any) {
         
     }
@@ -45,123 +43,89 @@ class MapDetailsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: -Helper Methods
+    func fetchAnnotationsAndDrawRoute() {
+        guard let ride = ride else { return }
+        RideController.shared.fetchAnnotationsFor(ride: ride) { (success) in
+            switch success {
+            case .success(_):
+                let annotations = RideController.shared.annotations
+                self.detailMapView.addAnnotations(annotations)
+                self.detailMapView.reloadInputViews()
+                self.drawRoute()
+                print("annotations fetched successfully")
+            case .failure(let error):
+                print("There was an error setting up annotations \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func setUpViews() {
         guard let ride = ride else { return }
         rideTitleLabel.text = ride.rideTitle
-        let coordinatesArray = ride.annotationCoordinates
-        for coordinates in coordinatesArray {
-            let annotationCoordinate = coordinates.coordinate
-            annotationCoords.append(annotationCoordinate)
-        }
     }
     
-    func fetchAnnotatoinsAndAddToMap() {
-        guard let ride = ride else { return }
-        for coords in ride.annotationCoordinates {
-            var annotationCords = CLLocationCoordinate2D()
-            let annotation = MKPointAnnotation()
-            let annoLat = coords.coordinate.latitude
-            let annoLon = coords.coordinate.longitude
-            annotationCords = CLLocationCoordinate2D(latitude: annoLat, longitude: annoLon)
-            annotation.coordinate = annotationCords
-            annotations.append(annotation)
+    func drawRoute() {
+        let annotations = RideController.shared.annotations
+        var coordinates = [CLLocationCoordinate2D]()
+        for anno in annotations {
+            coordinates.append(anno.coordinate)
         }
         
-        detailMapView.addAnnotations(annotations)
-          drawDirections()
-    }
-    
-    func drawDirections() {
-        if annotations.count >= 1 {
-            for annotation in annotations {
-                startLocation = annotation.coordinate
-                self.getDirections()
-                detailMapView.reloadInputViews()
-                destinationLocation = annotation.coordinate
-            }
-        }
-    }
-    
-    func getDirections() {
+        let polyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
+        let visibleMapRect = detailMapView.mapRectThatFits(polyline.boundingMapRect, edgePadding : UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+        self.detailMapView.setRegion(MKCoordinateRegion(visibleMapRect), animated: true)
         
-        guard let location = startLocation else { return }
-        //TODO: Alert user we dont have their current location
-        
-        let request = createDirectionsRequest(from: location)
-        let directions = MKDirections(request: request)
-        
-        
-        directions.calculate { [unowned self] (response, error) in
-            if let error = error {
-                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
-            }
-            guard let response = response else { return } //TODO: Show response not available in alert
+        var index = 0
+        while index < annotations.count - 1 {
+            getDirections(startPoint: annotations[index].coordinate, endPoint: annotations[index + 1].coordinate)
             
-            
-            for route in response.routes {
-                // these are the instructions
-                //    let steps = route.steps
-                // ADDS THE BLUE LINES.
-                self.detailMapView.addOverlay(route.polyline)
-                // resizes the map to show the entire route
-               //  self.detailMapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-            }
+            index += 1
         }
     }
     
-    func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
-        guard let destinationCoordinate = destinationLocation else { return MKDirections.Request() }
-        let startingLocation = MKPlacemark(coordinate: coordinate)
-        let destination = MKPlacemark(coordinate: destinationCoordinate)
-        
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: startingLocation)
-        request.destination = MKMapItem(placemark: destination)
-        request.transportType = .automobile
-        // request.requestsAlternateRoutes = true
-        
-        return request
+    func getDirections(startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
+        // Create map items from coordinate
+        let startPlacemark = MKPlacemark(coordinate: startPoint, addressDictionary: nil)
+        let endPlacemark = MKPlacemark(coordinate: endPoint, addressDictionary: nil)
+        let startMapItem = MKMapItem(placemark: startPlacemark)
+        let endMapItem = MKMapItem(placemark: endPlacemark)
+        // Set the source and destination of the route
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = startMapItem
+        directionRequest.destination = endMapItem
+        directionRequest.transportType = MKDirectionsTransportType.automobile
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate { (routeResponse, routeError) -> Void in
+            guard let routeResponse = routeResponse else { if let routeError = routeError {
+                print("Error: \(routeError)") }
+                return
+            }
+            
+            let route = routeResponse.routes[0]
+            self.detailMapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads) }
     }
     
-    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
-           let latitude = mapView.centerCoordinate.latitude
-           let longitude = mapView.centerCoordinate.longitude
-           
-           return CLLocation(latitude: latitude, longitude: longitude)
-       }
+    //    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+    //        let latitude = mapView.centerCoordinate.latitude
+    //        let longitude = mapView.centerCoordinate.longitude
+    //
+    //        return CLLocation(latitude: latitude, longitude: longitude)
+    //    }
     
 } // END OF CLASS
 
 extension MapDetailsViewController: MKMapViewDelegate {
     
-//    func  mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        let center = getCenterLocation(for: mapView)
-//        let geoCoder = CLGeocoder()
-//
-//        guard let previouseLocation = self.previouseLocation else { return }
-//
-//        guard center.distance(from: previouseLocation) > 50 else { return }
-//        self.previouseLocation = center
-//
-//        geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
-//            guard let self = self else { return }
-//
-//            if let error = error {
-//                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
-//            }
-//            guard let placemark = placemarks?.first else {
-//                // TODO: Create an alert to inform the user
-//                return
-//            }
-            
-//            let streetNumber = placemark.subThoroughfare ?? ""
-//            let streetName = placemark.thoroughfare ?? ""
-            
-//            DispatchQueue.main.async {
-//                self.addressLabel.text = "\(streetNumber) \(streetName)"
-//            }
-//        }
-//    }
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        let annotationView = views[0]
+        let endFrame = annotationView.frame
+        annotationView.frame = endFrame.offsetBy(dx: 0, dy: -600)
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            annotationView.frame = endFrame
+        })
+    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)

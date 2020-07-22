@@ -14,17 +14,22 @@ protocol PhotoPickerDelegate: class {
 
 class PhotoPickerViewController: UIViewController {
     
+    //MARK: -Outlets
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var selectPhotoButton: UIButton!
     
+    //MARK: -Properties
     let imagePicker = UIImagePickerController()
+    //MARK: -Set Delegate
     weak var delegate: PhotoPickerDelegate?
     
+    //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
+    //MARK: -Actions
     @IBAction func selectPhotoButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Add a photo", message: nil, preferredStyle: .alert)
         
@@ -45,6 +50,7 @@ class PhotoPickerViewController: UIViewController {
         
     }
     
+    //MARK: -Helper
     func setupViews() {
            photoImageView.contentMode = .scaleToFill
            photoImageView.clipsToBounds = true

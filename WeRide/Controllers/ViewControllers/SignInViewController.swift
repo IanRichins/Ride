@@ -10,13 +10,15 @@ import UIKit
 
 class SignInViewController: UIViewController {
     
+    //MARK: -Outlets
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var profilePhotoContainerView: UIView!
     
-    
+    //MARK: -Properties
     var image: UIImage?
     
+    //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUser()
@@ -24,7 +26,7 @@ class SignInViewController: UIViewController {
         addEmitter()
     }
     
-    
+    //MARK: -Actions
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         sender.pulse()
       //  guard UserController.shared.currentUser == nil else { self.presentRideHomeStoryboard() ; return }
@@ -43,6 +45,7 @@ class SignInViewController: UIViewController {
         }
     }
     
+    //MARK: - Helpers
     func presentRideHomeStoryboard() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
@@ -83,7 +86,6 @@ class SignInViewController: UIViewController {
     }
     
      // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPhotoPickerVC" {
             let destinationVC = segue.destination as? PhotoPickerViewController
@@ -91,7 +93,7 @@ class SignInViewController: UIViewController {
         }
      }
     
-}
+} // END OF CLASS
 
 extension SignInViewController: PhotoPickerDelegate {
     func photoPickerSelected(image: UIImage) {

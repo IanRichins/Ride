@@ -6,10 +6,10 @@
 //  Copyright © 2020 Ian Richins. All rights reserved.
 //
 
-import Foundation
-import CloudKit
-import MapKit
-
+//import Foundation
+//import CloudKit
+//import MapKit
+//
 //class RouteAnnotationController {
 //
 //    static let shared = RouteAnnotationController()
@@ -42,9 +42,9 @@ import MapKit
 //        }
 //    }
 //    //Fetch
-//    func fetchAnnotation(completion: @escaping (Result<[RouteAnnotation], UserError>) -> Void) {
+//    func fetchAnnotation(completion: @escaping (Result<Bool, UserError>) -> Void) {
 //        let predicate = NSPredicate(value: true)
-//        let query = CKQuery(recordType: RouteAnnotationStrings.typeKey, predicate: predicate)
+//        let query = CKQuery(recordType: RideStrings.typeKey, predicate: predicate)
 //        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
 //            if let error = error {
 //                print(error.localizedDescription)
@@ -56,7 +56,7 @@ import MapKit
 //                self.annotations.append(anno)
 //            }
 //
-//            completion(.success(annotations))
+//            completion(.success(true))
 //        }
 //    }
 //

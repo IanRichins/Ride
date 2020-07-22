@@ -9,19 +9,23 @@
 import UIKit
 
 class RideHomeScreenViewController: UIViewController {
+    
+    //MARK: -Outlets
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var yourRidesButton: UIButton!
     @IBOutlet weak var createRideButton: UIButton!
     @IBOutlet weak var photoPickerContainerView: UIView!
     
-    
+    //MARK: -Properties
     var image: UIImage?
     
+    //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
-    
+     
+    //MARK: -Actions
     @IBAction func yourRidesButtonTapped(_ sender: UIButton) {
         sender.flash()
     }
@@ -30,6 +34,7 @@ class RideHomeScreenViewController: UIViewController {
         sender.pulse()
     }
     
+    //MARK: -Helper
     func setupViews() {
         let currentUser = UserController.shared.currentUser
         usernameLabel.text = currentUser?.username
@@ -45,6 +50,13 @@ class RideHomeScreenViewController: UIViewController {
                destinationVC?.delegate = self
            }
         }   
+} // END OF CLASS
+
+extension RideHomeScreenViewController: PhotoPickerDelegate {
+    func photoPickerSelected(image: UIImage) {
+        
+        self.image = image
+    }
 }
 
 extension UIView {
@@ -61,9 +73,5 @@ extension UIView {
         
     }
 }
-extension RideHomeScreenViewController: PhotoPickerDelegate {
-    func photoPickerSelected(image: UIImage) {
-        
-        self.image = image
-    }
-}
+
+

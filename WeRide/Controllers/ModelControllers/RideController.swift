@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import MapKit
 
 class RideController {
     //MARK: -Singleton
@@ -15,7 +16,9 @@ class RideController {
     
     //MARK: -Source Of Truth
     var currentRide: Ride?
+    var coordinates: [CLLocation] = []
     var rides: [Ride] = []
+    var annotations: [MKPointAnnotation] = []
     
     //MARK: -Properties
     let publicDB = CKContainer.default().publicCloudDatabase
@@ -58,6 +61,18 @@ class RideController {
             
             completion(.success(rides))
         }
+    }
+    
+    func fetchAnnotationsFor(ride: Ride, completion: @escaping (Result<[MKPointAnnotation], UserError>) -> Void) {
+        annotations.removeAll()
+    let annotationCoordinates = ride.annotationCoordinates
+    for coordinate in annotationCoordinates {
+         let annotation = MKPointAnnotation()
+        let location = coordinate.coordinate
+        annotation.coordinate = location
+        annotations.append(annotation)
+        }
+        completion(.success(self.annotations))
     }
     
     func updateRide(_ ride: Ride, completion: @escaping (_ sucess: Bool) -> Void) {
