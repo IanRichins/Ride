@@ -56,13 +56,13 @@ class CreateMapViewController: UIViewController {
     }
     
     //MARK: -Helper Methods
-    func drawPolyline(for locations: [CLLocation] ) {
-        if routeCoordinates.count >= 1 {
-            let coordinates = locations.map { $0.coordinate }
-            let geoPoly = MKGeodesicPolyline(coordinates: coordinates, count: locations.count)
-            mapView.addOverlay(geoPoly)
-        }
-    }
+//    func drawPolyline(for locations: [CLLocation] ) {
+//        if routeCoordinates.count >= 1 {
+//            let coordinates = locations.map { $0.coordinate }
+//            let geoPoly = MKGeodesicPolyline(coordinates: coordinates, count: locations.count)
+//            mapView.addOverlay(geoPoly)
+//        }
+//    }
     
     func addAnnotationPin() {
         let annotation = MKPointAnnotation()
@@ -78,7 +78,6 @@ class CreateMapViewController: UIViewController {
     
     func drawRoute() {
         mapView.removeOverlays(mapView.overlays)
-        
         var coordinates = [CLLocationCoordinate2D]()
         for annotation in onScreenAnnotations {
             coordinates.append(annotation.coordinate)

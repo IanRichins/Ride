@@ -32,6 +32,7 @@
 		FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */; };
 		FE59C6F52492F5DC00CCF6DA /* RideHomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */; };
 		FE6E6960249A7C240009BC67 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */; };
+		FEEAD8CD24C8DDD200BF13B9 /* RideList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEEAD8CC24C8DDD200BF13B9 /* RideList.storyboard */; };
 		FEFD90EC249AA939000B6CC6 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD90EB249AA939000B6CC6 /* DesignableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RideHomeScreen.storyboard; sourceTree = "<group>"; };
 		FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHomeScreenViewController.swift; sourceTree = "<group>"; };
 		FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
+		FEEAD8CC24C8DDD200BF13B9 /* RideList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RideList.storyboard; sourceTree = "<group>"; };
 		FEFD90EB249AA939000B6CC6 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 			children = (
 				FE59C6B3248AE93000CCF6DA /* Main.storyboard */,
 				FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */,
+				FEEAD8CC24C8DDD200BF13B9 /* RideList.storyboard */,
 				FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */,
 				FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */,
 			);
@@ -177,11 +180,11 @@
 			isa = PBXGroup;
 			children = (
 				FE59C6CE248AEBF000CCF6DA /* SignInViewController.swift */,
+				FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */,
 				FE59C6DD248E9D7B00CCF6DA /* CreateMapViewController.swift */,
 				FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */,
 				FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */,
 				FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */,
-				FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				FE6E6960249A7C240009BC67 /* PhotoPicker.storyboard in Resources */,
 				FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */,
 				FE59C6B7248AE93100CCF6DA /* Assets.xcassets in Resources */,
+				FEEAD8CD24C8DDD200BF13B9 /* RideList.storyboard in Resources */,
 				FE59C6B5248AE93000CCF6DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

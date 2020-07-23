@@ -45,6 +45,14 @@ class RideListTableViewController: UITableViewController {
         return RideController.shared.rides.count
     }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 1.0) {
+            cell.alpha = 1 
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "rideCell", for: indexPath) as? RideListTableViewCell else  { return UITableViewCell() }
 

@@ -62,7 +62,8 @@ class MapDetailsViewController: UIViewController {
     
     func setUpViews() {
         guard let ride = ride else { return }
-        rideTitleLabel.text = ride.rideTitle
+        // TODO: -Make Ride title non optional. 
+        rideTitleLabel.text = "\(String(describing: ride.rideTitle))"
     }
     
     func drawRoute() {

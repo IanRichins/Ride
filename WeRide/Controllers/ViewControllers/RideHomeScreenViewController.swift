@@ -41,6 +41,7 @@ class RideHomeScreenViewController: UIViewController {
         createRideButton.layer.cornerRadius = createRideButton.frame.height / 2
         yourRidesButton.layer.cornerRadius = yourRidesButton.frame.height / 2
         photoPickerContainerView.layer.cornerRadius = photoPickerContainerView.frame.height / 2
+        photoPickerContainerView.clipsToBounds = true
         self.view.addBackground()
     }
     
