@@ -10,17 +10,24 @@ import UIKit
 
 class RideListTableViewController: UITableViewController {
 
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
     //MARK: -LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        backButton.title = "Back"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadData()
     }
-        
-    //MARK: -Helper
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        presentRideHomeStoryboard()
+    }
+    
+    //MARK: -Helpers
     func loadData() {
         RideController.shared.fetchRide { (result) in
             switch result {
@@ -36,9 +43,15 @@ class RideListTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func doneButtonTapped(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
-    }
+    func presentRideHomeStoryboard() {
+          DispatchQueue.main.async {
+              let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
+              guard let viewController = storyboard.instantiateInitialViewController() else { return }
+              viewController.modalPresentationStyle = .fullScreen
+              self.present(viewController, animated: true)
+          }
+      }
+   
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,7 +62,7 @@ class RideListTableViewController: UITableViewController {
         cell.alpha = 0
         
         UIView.animate(withDuration: 1.0) {
-            cell.alpha = 1 
+            cell.alpha = 1
         }
     }
     

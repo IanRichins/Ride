@@ -71,23 +71,23 @@ class UserController {
         }
     }
     
-//    func fetchUserFor(_ ride: Ride, completion: @escaping (Result<User, UserError>) -> Void) {
-//        guard let userID = ride.userReference?.recordID else { return completion(.failure(.unexpectedRecordsFound)) }
-//
-//        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
-//        let query = CKQuery(recordType: UserStrings.recordTypeKey, predicate: predicate)
-//        publicDB.perform(query, inZoneWith: nil) { (records, error) in
-//            if let error = error {
-//                completion(.failure(.ckError(error)))
-//            }
-//
-//            guard let record = records?.first,
-//                let foundUser = User(ckRecord: record)
-//                else { return completion(.failure(.couldNotUnwrap)) }
-//            print("Found user for hype")
-//            completion(.success(foundUser))
-//        }
-//    }
+    //    func fetchUserFor(_ ride: Ride, completion: @escaping (Result<User, UserError>) -> Void) {
+    //        guard let userID = ride.userReference?.recordID else { return completion(.failure(.unexpectedRecordsFound)) }
+    //
+    //        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
+    //        let query = CKQuery(recordType: UserStrings.recordTypeKey, predicate: predicate)
+    //        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+    //            if let error = error {
+    //                completion(.failure(.ckError(error)))
+    //            }
+    //
+    //            guard let record = records?.first,
+    //                let foundUser = User(ckRecord: record)
+    //                else { return completion(.failure(.couldNotUnwrap)) }
+    //            print("Found user for hype")
+    //            completion(.success(foundUser))
+    //        }
+    //    }
     
     private func fetchAppleUserReference(completion: @escaping (Result<CKRecord.Reference?, UserError>) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
@@ -102,11 +102,43 @@ class UserController {
         }
     }
     
-    func update(_ user: User, completion: @escaping (_ success: Bool) -> Void) {
-        
+    func update(user: User, completion: @escaping (_ success: Bool) -> Void) {
+        let recordToUpdate = CKRecord(user: user)
+        let operation = CKModifyRecordsOperation(recordsToSave: [recordToUpdate], recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        operation.qualityOfService = .userInteractive
+        operation.modifyRecordsCompletionBlock = { records, _, error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false)
+                return
+            }
+            guard recordToUpdate == records?.first else {
+                print("error: unexpected record")
+                completion(false)
+                return
+            }
+            print("updated record succesfully")
+            completion(true)
+        }
+        publicDB.add(operation)
     }
     
-    func delete(_ user: User, completion: @escaping (_ success: Bool) -> Void) {
-        
+    func delete(user: User, completion: @escaping (_ success: Bool) -> Void) {
+        let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [user.ckRecordID])
+        operation.qualityOfService = .userInitiated
+        operation.modifyRecordsCompletionBlock = { _, recordIDs, error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false)
+                return
+            }
+            if user.ckRecordID == recordIDs?.first {
+                print("successfully removed User")
+                completion(true)
+                return
+            }
+        }
+        publicDB.add(operation)
     }
 }

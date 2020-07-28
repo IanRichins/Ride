@@ -15,7 +15,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1na-Tf-GFr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423" y="-485"/>
+            <point key="canvasLocation" x="1699" y="-485"/>
         </scene>
         <!--Ride Home Screen View Controller-->
         <scene sceneID="vGi-lY-k63">
@@ -105,7 +105,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="yourRidesButtonTapped:" destination="3aV-aZ-xfw" eventType="touchUpInside" id="hec-Q4-Jni"/>
-                                                    <segue destination="75f-9M-LSP" kind="show" id="Rd0-IQ-hVS"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Yz-kt-fac" customClass="PMSuperButton" customModule="PMSuperButton">
@@ -219,6 +218,7 @@
                         <outlet property="photoPickerContainerView" destination="epc-Ab-L5E" id="nKU-xu-W9s"/>
                         <outlet property="usernameLabel" destination="EGy-Ia-P9W" id="2ev-sb-rYw"/>
                         <outlet property="yourRidesButton" destination="Dcm-vQ-3Xx" id="XEb-Jj-8l7"/>
+                        <segue destination="75f-9M-LSP" kind="show" id="kAW-RK-dDi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWz-wc-6NL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -440,7 +440,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmq-nX-fBf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2013" y="446"/>
+            <point key="canvasLocation" x="1401" y="-485"/>
         </scene>
     </scenes>
     <resources>

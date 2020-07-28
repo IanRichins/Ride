@@ -14,6 +14,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var profilePhotoContainerView: UIView!
+    @IBOutlet weak var logoImageView: UIImageView!
     
     //MARK: -Properties
     var image: UIImage?
@@ -46,28 +47,13 @@ class SignInViewController: UIViewController {
     }
     
     //MARK: - Helpers
-    func presentRideHomeStoryboard() {
-        DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
-            guard let viewController = storyboard.instantiateInitialViewController() else { return }
-            viewController.modalPresentationStyle = .fullScreen
-            self.present(viewController, animated: true)
-        }
-    }
-    
+   
     func setUpViews() {
         signInButton.layer.cornerRadius = signInButton.frame.height / 2
         profilePhotoContainerView.layer.cornerRadius = profilePhotoContainerView.frame.height / 2
         profilePhotoContainerView.clipsToBounds = true
         usernameTextField.layer.cornerRadius = usernameTextField.frame.height / 2
-
-    }
-    
-    func addEmitter() {
-        let emitter = Emitter.get(with: #imageLiteral(resourceName: "Checkered Flag no background copy"))
-        emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
-        emitter.emitterSize = CGSize(width: view.frame.width, height: 1)
-        view.layer.insertSublayer(emitter, at: 0)
+        logoImageView.image = #imageLiteral(resourceName: "weRideLogo")
     }
     
     func fetchUser() {
@@ -85,6 +71,22 @@ class SignInViewController: UIViewController {
         }
     }
     
+    func presentRideHomeStoryboard() {
+           DispatchQueue.main.async {
+               let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
+               guard let viewController = storyboard.instantiateInitialViewController() else { return }
+               viewController.modalPresentationStyle = .fullScreen
+               self.present(viewController, animated: true)
+           }
+       }
+    
+    func addEmitter() {
+        let emitter = Emitter.get(with: #imageLiteral(resourceName: "Checkered Flag no background copy"))
+        emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 0)
+        emitter.emitterSize = CGSize(width: view.frame.width, height: 1)
+        view.layer.insertSublayer(emitter, at: 0)
+    }
+    
      // MARK: - Navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPhotoPickerVC" {
@@ -97,7 +99,6 @@ class SignInViewController: UIViewController {
 
 extension SignInViewController: PhotoPickerDelegate {
     func photoPickerSelected(image: UIImage) {
-        
         self.image = image
     }
 }

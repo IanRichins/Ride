@@ -52,10 +52,10 @@ class PhotoPickerViewController: UIViewController {
     
     //MARK: -Helper
     func setupViews() {
-           photoImageView.contentMode = .scaleToFill
+           photoImageView.contentMode = .scaleAspectFill
            photoImageView.clipsToBounds = true
         photoImageView.image = .add
-           photoImageView.backgroundColor = .lightGray
+        photoImageView.backgroundColor = .lightGray
            imagePicker.delegate = self
        }
     

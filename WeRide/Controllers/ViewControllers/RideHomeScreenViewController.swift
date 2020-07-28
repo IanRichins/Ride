@@ -28,13 +28,14 @@ class RideHomeScreenViewController: UIViewController {
     //MARK: -Actions
     @IBAction func yourRidesButtonTapped(_ sender: UIButton) {
         sender.flash()
+        presentRideListStoryboard()
     }
     
     @IBAction func createRideButtonTapped(_ sender: UIButton) {
         sender.pulse()
     }
     
-    //MARK: -Helper
+    //MARK: -Helpers
     func setupViews() {
         let currentUser = UserController.shared.currentUser
         usernameLabel.text = currentUser?.username
@@ -43,6 +44,15 @@ class RideHomeScreenViewController: UIViewController {
         photoPickerContainerView.layer.cornerRadius = photoPickerContainerView.frame.height / 2
         photoPickerContainerView.clipsToBounds = true
         self.view.addBackground()
+    }
+    
+    func presentRideListStoryboard() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "RideList", bundle: nil)
+            guard let viewController = storyboard.instantiateInitialViewController() else { return }
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
