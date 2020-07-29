@@ -22,9 +22,14 @@ class RideHomeScreenViewController: UIViewController {
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+         setupViews()
     }
      
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
     //MARK: -Actions
     @IBAction func yourRidesButtonTapped(_ sender: UIButton) {
         sender.flash()
@@ -46,6 +51,12 @@ class RideHomeScreenViewController: UIViewController {
         self.view.addBackground()
     }
     
+   func setUserInfo(for user: User) {
+    DispatchQueue.main.async {
+      
+    }
+    }
+    
     func presentRideListStoryboard() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "RideList", bundle: nil)
@@ -65,7 +76,6 @@ class RideHomeScreenViewController: UIViewController {
 
 extension RideHomeScreenViewController: PhotoPickerDelegate {
     func photoPickerSelected(image: UIImage) {
-        
         self.image = image
     }
 }

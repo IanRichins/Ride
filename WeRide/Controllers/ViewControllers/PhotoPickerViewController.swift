@@ -14,12 +14,16 @@ protocol PhotoPickerDelegate: class {
 
 class PhotoPickerViewController: UIViewController {
     
+    //MARK: -Singleton
+    static let shared = PhotoPickerViewController()
+    
     //MARK: -Outlets
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var selectPhotoButton: UIButton!
     
     //MARK: -Properties
-    let imagePicker = UIImagePickerController()
+    let user = UserController.shared.currentUser
+     let imagePicker = UIImagePickerController()
     //MARK: -Set Delegate
     weak var delegate: PhotoPickerDelegate?
     
@@ -54,7 +58,7 @@ class PhotoPickerViewController: UIViewController {
     func setupViews() {
            photoImageView.contentMode = .scaleAspectFill
            photoImageView.clipsToBounds = true
-        photoImageView.image = .add
+            photoImageView.image = .add
         photoImageView.backgroundColor = .lightGray
            imagePicker.delegate = self
        }
@@ -95,6 +99,14 @@ extension PhotoPickerViewController: UIImagePickerControllerDelegate, UINavigati
                 else { return }
             delegate.photoPickerSelected(image: pickedImage)
             photoImageView.image = pickedImage
+            guard let user = UserController.shared.currentUser else { return }
+            UserController.shared.update(user: user) { (success) in
+                if success {
+                    print("Profile image updated")
+                } else {
+                    print("unable to update user photo")
+                }
+            }
         }
         picker.dismiss(animated: true, completion: nil)
     }

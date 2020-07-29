@@ -59,12 +59,11 @@ class SignInViewController: UIViewController {
     func fetchUser() {
         UserController.shared.fetchUser { (result) in
             switch result {
-            case .success(let user):
+            case .success(let user):                
                 print("fetched user successfully")
                 self.presentRideHomeStoryboard()
                   guard let user = user else { return }
                  UserController.shared.currentUser = user
-                
             case .failure(let error):
                 print(error.localizedDescription)
             }
