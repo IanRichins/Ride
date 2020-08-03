@@ -99,14 +99,7 @@ extension PhotoPickerViewController: UIImagePickerControllerDelegate, UINavigati
                 else { return }
             delegate.photoPickerSelected(image: pickedImage)
             photoImageView.image = pickedImage
-//            guard let user = UserController.shared.currentUser else { return }
-//            UserController.shared.update(user: user) { (success) in
-//                if success {
-//                    print("Profile image updated")
-//                } else {
-//                    print("unable to update user photo")
-//                }
-//            }
+
         }
         picker.dismiss(animated: true, completion: nil)
     }

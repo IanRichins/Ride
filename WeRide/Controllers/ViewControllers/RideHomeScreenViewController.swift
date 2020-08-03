@@ -14,7 +14,9 @@ class RideHomeScreenViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var yourRidesButton: UIButton!
     @IBOutlet weak var createRideButton: UIButton!
-    @IBOutlet weak var photoPickerContainerView: UIView!
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var editProfileButton: UIBarButtonItem!
+    
     
     //MARK: -Properties
     var image: UIImage? {
@@ -22,6 +24,7 @@ class RideHomeScreenViewController: UIViewController {
             guard let user = UserController.shared.currentUser else { return }
             UserController.shared.update(user: user) { (success) in
                 if success {
+                    self.profilePhotoImageView.image = self.image
                     print("user image updated")
                 }
             }
@@ -38,6 +41,9 @@ class RideHomeScreenViewController: UIViewController {
         super.awakeFromNib()
         
     }
+    @IBAction func editProfileButtonTapped(_ sender: Any) {
+        presentEditProfileStoryboard()
+    }
     
     //MARK: -Actions
     @IBAction func yourRidesButtonTapped(_ sender: UIButton) {
@@ -52,23 +58,32 @@ class RideHomeScreenViewController: UIViewController {
     //MARK: -Helpers
     func setupViews() {
         let currentUser = UserController.shared.currentUser
+        if currentUser?.profilePhoto == nil {
+            profilePhotoImageView.image = .add
+        } else {
+            profilePhotoImageView.image = currentUser?.profilePhoto
+        }
+        editProfileButton.title = "Edit Profile"
         usernameLabel.text = currentUser?.username
         createRideButton.layer.cornerRadius = createRideButton.frame.height / 2
         yourRidesButton.layer.cornerRadius = yourRidesButton.frame.height / 2
-        photoPickerContainerView.layer.cornerRadius = photoPickerContainerView.frame.height / 2
-        photoPickerContainerView.clipsToBounds = true
+        profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.height / 2
+        profilePhotoImageView.clipsToBounds = true
         self.view.addBackground()
-    }
-    
-   func setUserInfo(for user: User) {
-    DispatchQueue.main.async {
-      
-    }
     }
     
     func presentRideListStoryboard() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "RideList", bundle: nil)
+            guard let viewController = storyboard.instantiateInitialViewController() else { return }
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true)
+        }
+    }
+    
+    func presentEditProfileStoryboard() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "EditProfile", bundle: nil)
             guard let viewController = storyboard.instantiateInitialViewController() else { return }
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)

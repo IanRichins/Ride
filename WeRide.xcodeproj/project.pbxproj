@@ -33,6 +33,8 @@
 		FE59C6F52492F5DC00CCF6DA /* RideHomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */; };
 		FE6E6960249A7C240009BC67 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */; };
 		FEEAD8CD24C8DDD200BF13B9 /* RideList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEEAD8CC24C8DDD200BF13B9 /* RideList.storyboard */; };
+		FEEAD8CF24D8ABD200BF13B9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEAD8CE24D8ABD200BF13B9 /* EditProfileViewController.swift */; };
+		FEEAD8D124D8C51C00BF13B9 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEEAD8D024D8C51C00BF13B9 /* EditProfile.storyboard */; };
 		FEFD90EC249AA939000B6CC6 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD90EB249AA939000B6CC6 /* DesignableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		FE59C6F42492F5DC00CCF6DA /* RideHomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHomeScreenViewController.swift; sourceTree = "<group>"; };
 		FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
 		FEEAD8CC24C8DDD200BF13B9 /* RideList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RideList.storyboard; sourceTree = "<group>"; };
+		FEEAD8CE24D8ABD200BF13B9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		FEEAD8D024D8C51C00BF13B9 /* EditProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		FEFD90EB249AA939000B6CC6 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +146,7 @@
 			children = (
 				FE59C6B3248AE93000CCF6DA /* Main.storyboard */,
 				FE59C6F22492C4D000CCF6DA /* RideHomeScreen.storyboard */,
+				FEEAD8D024D8C51C00BF13B9 /* EditProfile.storyboard */,
 				FEEAD8CC24C8DDD200BF13B9 /* RideList.storyboard */,
 				FE6E695F249A7C240009BC67 /* PhotoPicker.storyboard */,
 				FE59C6E52490517500CCF6DA /* RideListTableViewCell.swift */,
@@ -185,6 +190,7 @@
 				FE59C6E7249051E100CCF6DA /* RideListTableViewController.swift */,
 				FE59C6E9249141A200CCF6DA /* MapDetailsViewController.swift */,
 				FE59C6ED2491D17B00CCF6DA /* PhotoPickerViewController.swift */,
+				FEEAD8CE24D8ABD200BF13B9 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE59C6BA248AE93100CCF6DA /* LaunchScreen.storyboard in Resources */,
+				FEEAD8D124D8C51C00BF13B9 /* EditProfile.storyboard in Resources */,
 				FE6E6960249A7C240009BC67 /* PhotoPicker.storyboard in Resources */,
 				FE59C6F32492C4D000CCF6DA /* RideHomeScreen.storyboard in Resources */,
 				FE59C6B7248AE93100CCF6DA /* Assets.xcassets in Resources */,
@@ -344,6 +351,7 @@
 				FE59C6AE248AE93000CCF6DA /* AppDelegate.swift in Sources */,
 				FE59C6EC2491CABC00CCF6DA /* Emitter.swift in Sources */,
 				FEFD90EC249AA939000B6CC6 /* DesignableView.swift in Sources */,
+				FEEAD8CF24D8ABD200BF13B9 /* EditProfileViewController.swift in Sources */,
 				FE59C6CF248AEBF000CCF6DA /* SignInViewController.swift in Sources */,
 				FE59C6DE248E9D7B00CCF6DA /* CreateMapViewController.swift in Sources */,
 				FE59C6E62490517500CCF6DA /* RideListTableViewCell.swift in Sources */,

@@ -7,16 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PhotoPicker-->
-        <scene sceneID="MKQ-7k-KKq">
-            <objects>
-                <viewControllerPlaceholder storyboardName="PhotoPicker" id="WN0-WX-ekQ" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="pzx-8A-wxD"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1na-Tf-GFr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1699" y="-485"/>
-        </scene>
         <!--Ride Home Screen View Controller-->
         <scene sceneID="vGi-lY-k63">
             <objects>
@@ -188,37 +178,42 @@
                                     <constraint firstAttribute="bottom" secondItem="2mT-aC-k50" secondAttribute="bottom" constant="5" id="lN7-Qi-2nZ"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epc-Ab-L5E">
-                                <rect key="frame" x="107" y="138" width="200" height="200"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LZa-VY-8B1">
+                                <rect key="frame" x="107" y="148" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="epc-Ab-L5E" secondAttribute="height" multiplier="1:1" id="Jkg-UP-JIQ"/>
-                                    <constraint firstAttribute="height" constant="200" id="xsC-S8-fTG"/>
+                                    <constraint firstAttribute="width" secondItem="LZa-VY-8B1" secondAttribute="height" multiplier="1:1" id="Fcu-Sb-zGM"/>
+                                    <constraint firstAttribute="height" constant="200" id="zxp-ej-mS3"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="WN0-WX-ekQ" kind="embed" identifier="toPhotoPickerVC" id="Jvb-hd-c9l"/>
-                                </connections>
-                            </containerView>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="FTu-5n-KQY" firstAttribute="trailing" secondItem="r6z-DN-U75" secondAttribute="trailing" id="D32-x7-w21"/>
+                            <constraint firstItem="LZa-VY-8B1" firstAttribute="centerX" secondItem="FTu-5n-KQY" secondAttribute="centerX" id="Dua-q2-I8w"/>
                             <constraint firstItem="r6z-DN-U75" firstAttribute="leading" secondItem="FTu-5n-KQY" secondAttribute="leading" id="Id5-lE-HNT"/>
-                            <constraint firstItem="epc-Ab-L5E" firstAttribute="centerX" secondItem="FTu-5n-KQY" secondAttribute="centerX" id="aOh-MD-nOJ"/>
+                            <constraint firstItem="LZa-VY-8B1" firstAttribute="top" secondItem="EGy-Ia-P9W" secondAttribute="bottom" constant="30" id="Vld-0u-OZ5"/>
                             <constraint firstItem="EGy-Ia-P9W" firstAttribute="top" secondItem="FTu-5n-KQY" secondAttribute="top" id="aX0-Fl-eTB"/>
-                            <constraint firstItem="epc-Ab-L5E" firstAttribute="top" secondItem="EGy-Ia-P9W" secondAttribute="bottom" constant="20" id="acm-2P-LL2"/>
                             <constraint firstItem="FTu-5n-KQY" firstAttribute="bottom" secondItem="r6z-DN-U75" secondAttribute="bottom" constant="235" id="bFo-5K-C2I"/>
                             <constraint firstItem="FTu-5n-KQY" firstAttribute="trailing" secondItem="EGy-Ia-P9W" secondAttribute="trailing" id="hZk-US-zGx"/>
                             <constraint firstItem="EGy-Ia-P9W" firstAttribute="leading" secondItem="FTu-5n-KQY" secondAttribute="leading" id="lqv-ZP-ZUb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FTu-5n-KQY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7gK-4M-ry2"/>
+                    <navigationItem key="navigationItem" id="7gK-4M-ry2">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="ybS-nK-l8U">
+                            <connections>
+                                <action selector="editProfileButtonTapped:" destination="3aV-aZ-xfw" id="ANY-4L-8eu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="createRideButton" destination="7Yz-kt-fac" id="otV-Ut-2IA"/>
-                        <outlet property="photoPickerContainerView" destination="epc-Ab-L5E" id="nKU-xu-W9s"/>
+                        <outlet property="editProfileButton" destination="ybS-nK-l8U" id="iZp-4m-h3g"/>
+                        <outlet property="profilePhotoImageView" destination="LZa-VY-8B1" id="htX-nI-QJN"/>
                         <outlet property="usernameLabel" destination="EGy-Ia-P9W" id="2ev-sb-rYw"/>
                         <outlet property="yourRidesButton" destination="Dcm-vQ-3Xx" id="XEb-Jj-8l7"/>
                         <segue destination="75f-9M-LSP" kind="show" id="kAW-RK-dDi"/>
+                        <segue destination="4Mh-g6-41p" kind="show" id="Ldz-1P-Mh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWz-wc-6NL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -352,6 +347,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmq-nX-fBf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1401" y="-485"/>
+        </scene>
+        <!--EditProfile-->
+        <scene sceneID="KNN-xN-450">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EditProfile" id="4Mh-g6-41p" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Y1a-Yc-kbx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RwQ-ze-2cD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410" y="-429"/>
         </scene>
     </scenes>
     <resources>

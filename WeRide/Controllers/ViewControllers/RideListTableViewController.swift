@@ -24,7 +24,7 @@ class RideListTableViewController: UITableViewController {
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        presentRideHomeStoryboard()
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: -Helpers
@@ -43,14 +43,14 @@ class RideListTableViewController: UITableViewController {
         }
     }
     
-    func presentRideHomeStoryboard() {
-          DispatchQueue.main.async {
-              let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
-              guard let viewController = storyboard.instantiateInitialViewController() else { return }
-              viewController.modalPresentationStyle = .fullScreen
-              self.present(viewController, animated: true)
-          }
-      }
+//    func presentRideHomeStoryboard() {
+//          DispatchQueue.main.async {
+//              let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
+//              guard let viewController = storyboard.instantiateInitialViewController() else { return }
+//              viewController.modalPresentationStyle = .fullScreen
+//              self.present(viewController, animated: true)
+//          }
+//      }
    
     
     // MARK: - Table view data source
