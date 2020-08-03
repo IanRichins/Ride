@@ -30,9 +30,6 @@ class CreateMapViewController: UIViewController {
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.delegate = self
-        searchBarStackView.isHidden = true
-        
     }
     
     //MARK: -Actions
@@ -115,7 +112,7 @@ class CreateMapViewController: UIViewController {
             
             guard let routeResponse = routeResponse else {
                 if let routeError = routeError {
-                    print("Error: \(routeError)")
+                    print("There was an error generating the route. Error: \(routeError)")
                 }
                 
                 return
@@ -171,9 +168,17 @@ class CreateMapViewController: UIViewController {
 //MARK: -Extensions
 extension CreateMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        if let oldLocationNew = oldLocation as CLLocation?{
+            let oldCoordinates = oldLocationNew.coordinate
+            let newCoordinates = newLocation.coordinate
+            var area = [oldCoordinates, newCoordinates]
+            let polyline = MKPolyline(coordinates: &area, count: area.count)
+            mapView.addOverlay(polyline)
+        }
+        print("present location : \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
     }
-    
+}
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }

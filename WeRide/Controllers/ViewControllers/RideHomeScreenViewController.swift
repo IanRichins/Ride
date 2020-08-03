@@ -17,7 +17,16 @@ class RideHomeScreenViewController: UIViewController {
     @IBOutlet weak var photoPickerContainerView: UIView!
     
     //MARK: -Properties
-    var image: UIImage?
+    var image: UIImage? {
+        didSet {
+            guard let user = UserController.shared.currentUser else { return }
+            UserController.shared.update(user: user) { (success) in
+                if success {
+                    print("user image updated")
+                }
+            }
+        }
+    }
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
