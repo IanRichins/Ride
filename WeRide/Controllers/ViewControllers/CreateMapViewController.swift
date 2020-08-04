@@ -16,7 +16,7 @@ class CreateMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var rideTitleTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var searchBarStackView: UIStackView!
+
     
     //MARK: -Properties
     let locationManager = CLLocationManager()
@@ -30,6 +30,7 @@ class CreateMapViewController: UIViewController {
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addressLabel.isHidden = true
     }
     
     //MARK: -Actions
@@ -53,14 +54,6 @@ class CreateMapViewController: UIViewController {
     }
     
     //MARK: -Helper Methods
-//    func drawPolyline(for locations: [CLLocation] ) {
-//        if routeCoordinates.count >= 1 {
-//            let coordinates = locations.map { $0.coordinate }
-//            let geoPoly = MKGeodesicPolyline(coordinates: coordinates, count: locations.count)
-//            mapView.addOverlay(geoPoly)
-//        }
-//    }
-    
     func addAnnotationPin() {
         let annotation = MKPointAnnotation()
         // Get CLLocation to save to CloudKit

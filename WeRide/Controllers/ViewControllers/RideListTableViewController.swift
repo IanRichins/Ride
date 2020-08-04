@@ -9,8 +9,12 @@
 import UIKit
 
 class RideListTableViewController: UITableViewController {
-
+    
+    //MARK: -Outlets
     @IBOutlet weak var backButton: UIBarButtonItem!
+    
+    //MARK: -Properties
+    var rideShown = [Bool](repeating: false, count: 6)
     
     //MARK: -LifeCycles
     override func viewDidLoad() {
@@ -43,22 +47,18 @@ class RideListTableViewController: UITableViewController {
         }
     }
     
-//    func presentRideHomeStoryboard() {
-//          DispatchQueue.main.async {
-//              let storyboard = UIStoryboard(name: "RideHomeScreen", bundle: nil)
-//              guard let viewController = storyboard.instantiateInitialViewController() else { return }
-//              viewController.modalPresentationStyle = .fullScreen
-//              self.present(viewController, animated: true)
-//          }
-//      }
-   
-    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RideController.shared.rides.count
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if rideShown[indexPath.row] {
+            return
+        }
+        
+        rideShown[indexPath.row] = true
+        
         cell.alpha = 0
         
         UIView.animate(withDuration: 1.0) {

@@ -36,25 +36,13 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="23V-so-NkX">
-                                <rect key="frame" x="40" y="431" width="334" height="97"/>
+                                <rect key="frame" x="40" y="408" width="334" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-MZ-rQQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="rWD-Pm-SrM"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nk-8V-JyP">
-                                        <rect key="frame" x="0.0" y="60" width="334" height="37"/>
-                                        <state key="normal" title="Edit" image="pencil" catalog="system">
-                                            <color key="titleColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.80149647889999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editUsernameButtonTapped:" destination="TeZ-WL-EBe" eventType="touchUpInside" id="hUa-cw-jue"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVh-Ud-5kf">
@@ -75,7 +63,7 @@
                                 </items>
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZp-p5-d1c">
-                                <rect key="frame" x="107" y="138" width="200" height="200"/>
+                                <rect key="frame" x="86" y="98" width="242" height="240"/>
                                 <connections>
                                     <segue destination="tJJ-XT-IIH" kind="embed" id="QyV-D2-Ygi"/>
                                 </connections>
@@ -83,30 +71,29 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="hZp-p5-d1c" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="107" id="15Y-BP-t5z"/>
+                            <constraint firstItem="hZp-p5-d1c" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="86" id="15Y-BP-t5z"/>
                             <constraint firstAttribute="bottom" secondItem="hlU-Rb-HIT" secondAttribute="bottom" constant="167" id="24n-di-0oG"/>
                             <constraint firstItem="23V-so-NkX" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="40" id="6PZ-aD-SYI"/>
                             <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="hlU-Rb-HIT" secondAttribute="trailing" constant="40" id="CG8-fp-Vx0"/>
                             <constraint firstItem="zWH-ht-VE3" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="40" id="Ddc-TB-DhV"/>
                             <constraint firstAttribute="bottom" secondItem="hZp-p5-d1c" secondAttribute="bottom" constant="558" id="JBC-8P-s35"/>
-                            <constraint firstItem="hZp-p5-d1c" firstAttribute="top" secondItem="TVh-Ud-5kf" secondAttribute="bottom" constant="50" id="Pi6-F4-hhn"/>
+                            <constraint firstItem="hZp-p5-d1c" firstAttribute="top" secondItem="TVh-Ud-5kf" secondAttribute="bottom" constant="10" id="Pi6-F4-hhn"/>
                             <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="23V-so-NkX" secondAttribute="trailing" constant="40" id="RhP-HV-7yD"/>
                             <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="zWH-ht-VE3" secondAttribute="trailing" constant="40" id="T7g-A3-Egr"/>
                             <constraint firstItem="hlU-Rb-HIT" firstAttribute="centerX" secondItem="zWH-ht-VE3" secondAttribute="centerX" id="XNq-UD-3z0"/>
-                            <constraint firstItem="23V-so-NkX" firstAttribute="top" secondItem="hZp-p5-d1c" secondAttribute="bottom" constant="93" id="ZYf-Lf-38y"/>
-                            <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="hZp-p5-d1c" secondAttribute="trailing" constant="107" id="d6v-Nq-Ua8"/>
+                            <constraint firstItem="23V-so-NkX" firstAttribute="top" secondItem="hZp-p5-d1c" secondAttribute="bottom" constant="70" id="ZYf-Lf-38y"/>
+                            <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="hZp-p5-d1c" secondAttribute="trailing" constant="86" id="d6v-Nq-Ua8"/>
                             <constraint firstItem="hlU-Rb-HIT" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="40" id="jRT-x2-N8j"/>
                             <constraint firstItem="TVh-Ud-5kf" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" id="jry-5N-bff"/>
                             <constraint firstItem="TVh-Ud-5kf" firstAttribute="top" secondItem="UTs-AD-cgw" secondAttribute="top" id="m3m-Yb-Klx"/>
                             <constraint firstItem="zWH-ht-VE3" firstAttribute="top" secondItem="hlU-Rb-HIT" secondAttribute="bottom" constant="38" id="vEK-IA-aBx"/>
                             <constraint firstItem="TVh-Ud-5kf" firstAttribute="trailing" secondItem="UTs-AD-cgw" secondAttribute="trailing" id="wPa-0a-P7r"/>
-                            <constraint firstItem="hlU-Rb-HIT" firstAttribute="top" secondItem="23V-so-NkX" secondAttribute="bottom" constant="30" id="yjk-OD-uxf"/>
+                            <constraint firstItem="hlU-Rb-HIT" firstAttribute="top" secondItem="23V-so-NkX" secondAttribute="bottom" constant="90" id="yjk-OD-uxf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UTs-AD-cgw"/>
                     </view>
                     <connections>
                         <outlet property="deleteAccountButton" destination="zWH-ht-VE3" id="qNe-0G-riO"/>
-                        <outlet property="editUsernameButton" destination="9nk-8V-JyP" id="Yr3-S4-656"/>
                         <outlet property="logoImageView" destination="hlU-Rb-HIT" id="5CB-5Y-Aid"/>
                         <outlet property="profilePhotoImageView" destination="hZp-p5-d1c" id="c1A-fq-xBA"/>
                         <outlet property="saveButton" destination="RjC-NJ-gDq" id="Src-bb-z11"/>
@@ -139,7 +126,4 @@
             <point key="canvasLocation" x="1390" y="-619"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="pencil" catalog="system" width="64" height="56"/>
-    </resources>
 </document>

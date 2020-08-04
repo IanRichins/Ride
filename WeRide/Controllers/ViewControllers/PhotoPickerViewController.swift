@@ -56,9 +56,13 @@ class PhotoPickerViewController: UIViewController {
     
     //MARK: -Helper
     func setupViews() {
+        if let user = user {
+            photoImageView.image = user.profilePhoto
+        } else {
+            photoImageView.image = .add
+        }
            photoImageView.contentMode = .scaleAspectFill
            photoImageView.clipsToBounds = true
-            photoImageView.image = .add
         photoImageView.backgroundColor = .lightGray
            imagePicker.delegate = self
        }

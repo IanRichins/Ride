@@ -14,7 +14,6 @@ class EditProfileViewController: UIViewController {
     
     
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var editUsernameButton: UIButton!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var deleteAccountButton: UIButton!
     @IBOutlet weak var profilePhotoImageView: UIView!
@@ -66,10 +65,6 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    @IBAction func editUsernameButtonTapped(_ sender: Any) {
-        usernameTextField.isUserInteractionEnabled = true
-    }
-    
     @IBAction func deleteAccountButtonTapped(_ sender: Any) {
         guard let user = user else { return }
         UserController.shared.delete(user: user) { (success) in
@@ -91,9 +86,7 @@ class EditProfileViewController: UIViewController {
     
     func setUpViews() {
         guard let user = user else { return }
-        // profilePhotoImageView.image = user.profilePhoto
         usernameTextField.text = user.username
-        usernameTextField.isUserInteractionEnabled = false
         logoImageView.image = #imageLiteral(resourceName: "weRideLogo")
         profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.height / 2
         profilePhotoImageView.clipsToBounds = true
