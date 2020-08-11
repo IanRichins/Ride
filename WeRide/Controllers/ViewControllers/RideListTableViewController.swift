@@ -53,12 +53,12 @@ class RideListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if rideShown[indexPath.row] {
-            return
-        }
-        
-        rideShown[indexPath.row] = true
-        
+//        if rideShown[indexPath.row] {
+//            return
+//        }
+//        
+//        rideShown[indexPath.row] = true
+//        
         cell.alpha = 0
         
         UIView.animate(withDuration: 1.0) {

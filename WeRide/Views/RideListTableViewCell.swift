@@ -23,6 +23,7 @@ class RideListTableViewCell: UITableViewCell {
     func setupViews() {
         rideTitleLabel.text = ride?.rideTitle
         rideCellImageView.image = #imageLiteral(resourceName: "Checkered Flag no background copy")
+        rideDateStamp.isHidden = true
     }
 
 }

@@ -112,3 +112,4 @@ extension SignInViewController: PhotoPickerDelegate {
         self.image = image
     }
 }
+
