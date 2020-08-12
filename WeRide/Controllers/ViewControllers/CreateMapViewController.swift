@@ -16,7 +16,6 @@ class CreateMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var rideTitleTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
-
     
     //MARK: -Properties
     let locationManager = CLLocationManager()
@@ -67,7 +66,7 @@ class CreateMapViewController: UIViewController {
     }
     
     func drawRoute() {
-        mapView.removeOverlays(mapView.overlays)
+        // mapView.removeOverlays(mapView.overlays)
         var coordinates = [CLLocationCoordinate2D]()
         for annotation in onScreenAnnotations {
             coordinates.append(annotation.coordinate)
@@ -76,11 +75,11 @@ class CreateMapViewController: UIViewController {
         let polyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
         let visibleMapRect = mapView.mapRectThatFits(polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
         self.mapView.setRegion(MKCoordinateRegion(visibleMapRect), animated: true)
-        
-        var index = 0
-        while index < onScreenAnnotations.count - 1 {
-            drawDirection(startPoint: onScreenAnnotations[index].coordinate, endPoint: onScreenAnnotations[index + 1].coordinate)
-            index += 1
+    
+            var index = 0
+            while index < onScreenAnnotations.count - 1 {
+                drawDirection(startPoint: onScreenAnnotations[index].coordinate, endPoint: onScreenAnnotations[index + 1].coordinate)
+                index += 1
         }
     }
     
@@ -102,12 +101,10 @@ class CreateMapViewController: UIViewController {
         let directions = MKDirections(request: directionRequest)
         
         directions.calculate { (routeResponse, routeError) -> Void in
-            
-            guard let routeResponse = routeResponse else {
-                if let routeError = routeError {
-                    print("There was an error generating the route. Error: \(routeError)")
-                }
+            guard let routeResponse = routeResponse else { if let routeError = routeError {
+                print("Error: \(routeError)")
                 
+                }
                 return
             }
             
@@ -152,31 +149,31 @@ class CreateMapViewController: UIViewController {
     func getCenterLocation(for mapView: MKMapView) -> CLLocation {
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
-    
+        
         return CLLocation(latitude: latitude, longitude: longitude)
     }
-
+    
 } // END OF CLASS
 
 //MARK: -Extensions
 extension CreateMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-        if let oldLocationNew = oldLocation as CLLocation?{
-            let oldCoordinates = oldLocationNew.coordinate
-            let newCoordinates = newLocation.coordinate
-            var area = [oldCoordinates, newCoordinates]
-            let polyline = MKPolyline(coordinates: &area, count: area.count)
-            mapView.addOverlay(polyline)
+            if let oldLocationNew = oldLocation as CLLocation?{
+                let oldCoordinates = oldLocationNew.coordinate
+                let newCoordinates = newLocation.coordinate
+                var area = [oldCoordinates, newCoordinates]
+                let polyline = MKPolyline(coordinates: &area, count: area.count)
+                mapView.addOverlay(polyline)
+            }
+            print("present location : \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
         }
-        print("present location : \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
-    }
         guard let location = locations.last else { return }
-                  let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                  let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-                  mapView.setRegion(region, animated: true)
-}
-          
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        mapView.setRegion(region, animated: true)
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
@@ -214,13 +211,13 @@ extension CreateMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-           let annotationView = views[0]
-           let endFrame = annotationView.frame
-           annotationView.frame = endFrame.offsetBy(dx: 0, dy: -600)
-           UIView.animate(withDuration: 0.3, animations: { () -> Void in
-               annotationView.frame = endFrame
-           })
-       }
+        let annotationView = views[0]
+        let endFrame = annotationView.frame
+        annotationView.frame = endFrame.offsetBy(dx: 0, dy: -600)
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            annotationView.frame = endFrame
+        })
+    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         

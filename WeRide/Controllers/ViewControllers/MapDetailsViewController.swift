@@ -61,9 +61,10 @@ class MapDetailsViewController: UIViewController {
     }
     
     func setUpViews() {
-        guard let ride = ride else { return }
+       // guard let ride = ride else { return }
         // TODO: -Make Ride title non optional. 
-        rideTitleLabel.text = "\(String(describing: ride.rideTitle))"
+       // rideTitleLabel.text = "\(String(describing: ride.rideTitle))"
+        rideTitleLabel.isHidden = true
     }
     
     func drawRoute() {
@@ -105,7 +106,9 @@ class MapDetailsViewController: UIViewController {
             }
             
             let route = routeResponse.routes[0]
-            self.detailMapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads) }
+            self.detailMapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
+            
+        }
     }
     
     //    func getCenterLocation(for mapView: MKMapView) -> CLLocation {

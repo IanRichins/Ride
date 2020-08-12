@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9mZ-UI-rnI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9mZ-UI-rnI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGy-Ia-P9W">
-                                <rect key="frame" x="0.0" y="88" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NxE-oi-O6W"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -190,8 +193,8 @@
                         <constraints>
                             <constraint firstItem="FTu-5n-KQY" firstAttribute="trailing" secondItem="r6z-DN-U75" secondAttribute="trailing" id="D32-x7-w21"/>
                             <constraint firstItem="LZa-VY-8B1" firstAttribute="centerX" secondItem="FTu-5n-KQY" secondAttribute="centerX" id="Dua-q2-I8w"/>
+                            <constraint firstItem="LZa-VY-8B1" firstAttribute="top" secondItem="EGy-Ia-P9W" secondAttribute="bottom" constant="10" id="FUd-2h-ejE"/>
                             <constraint firstItem="r6z-DN-U75" firstAttribute="leading" secondItem="FTu-5n-KQY" secondAttribute="leading" id="Id5-lE-HNT"/>
-                            <constraint firstItem="LZa-VY-8B1" firstAttribute="top" secondItem="EGy-Ia-P9W" secondAttribute="bottom" constant="30" id="Vld-0u-OZ5"/>
                             <constraint firstItem="EGy-Ia-P9W" firstAttribute="top" secondItem="FTu-5n-KQY" secondAttribute="top" id="aX0-Fl-eTB"/>
                             <constraint firstItem="FTu-5n-KQY" firstAttribute="bottom" secondItem="r6z-DN-U75" secondAttribute="bottom" constant="235" id="bFo-5K-C2I"/>
                             <constraint firstItem="FTu-5n-KQY" firstAttribute="trailing" secondItem="EGy-Ia-P9W" secondAttribute="trailing" id="hZk-US-zGx"/>
@@ -360,6 +363,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="scope" catalog="system" width="64" height="60"/>
+        <image name="scope" catalog="system" width="128" height="122"/>
     </resources>
 </document>

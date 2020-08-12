@@ -36,11 +36,7 @@ class RideHomeScreenViewController: UIViewController {
         super.viewDidLoad()
          setupViews()
     }
-     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
+
     @IBAction func editProfileButtonTapped(_ sender: Any) {
         presentEditProfileStoryboard()
     }
