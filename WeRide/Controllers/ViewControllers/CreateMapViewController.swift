@@ -58,11 +58,12 @@ class CreateMapViewController: UIViewController {
         // Get CLLocation to save to CloudKit
         let annotationCoordinates = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         self.routeCoordinates.append(annotationCoordinates)
-        // Get CLLocationCoordinate2D for adding annotations
+        //    Get CLLocationCoordinate2D for adding annotations
         annotation.coordinate = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         self.onScreenAnnotations.append(annotation)
         mapView.showAnnotations(onScreenAnnotations, animated: true)
-        drawRoute()
+        mapView.reloadInputViews()
+         drawRoute()
     }
     
     func drawRoute() {
@@ -75,15 +76,15 @@ class CreateMapViewController: UIViewController {
         let polyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
         let visibleMapRect = mapView.mapRectThatFits(polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
         self.mapView.setRegion(MKCoordinateRegion(visibleMapRect), animated: true)
-    
-            var index = 0
-            while index < onScreenAnnotations.count - 1 {
-                drawDirection(startPoint: onScreenAnnotations[index].coordinate, endPoint: onScreenAnnotations[index + 1].coordinate)
-                index += 1
+        
+        var index = 0
+        while index < onScreenAnnotations.count - 1 {
+            drawDirections(startPoint: onScreenAnnotations[index].coordinate, endPoint: onScreenAnnotations[index + 1].coordinate)
+            index += 1
         }
     }
     
-    func drawDirection(startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
+    func drawDirections(startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
         
         // Create map items from coordinate
         let startPlacemark = MKPlacemark(coordinate: startPoint, addressDictionary: nil)
@@ -158,16 +159,16 @@ class CreateMapViewController: UIViewController {
 //MARK: -Extensions
 extension CreateMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-            if let oldLocationNew = oldLocation as CLLocation?{
-                let oldCoordinates = oldLocationNew.coordinate
-                let newCoordinates = newLocation.coordinate
-                var area = [oldCoordinates, newCoordinates]
-                let polyline = MKPolyline(coordinates: &area, count: area.count)
-                mapView.addOverlay(polyline)
-            }
-            print("present location : \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
-        }
+        //        func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        //            if let oldLocationNew = oldLocation as CLLocation?{
+        //                let oldCoordinates = oldLocationNew.coordinate
+        //                let newCoordinates = newLocation.coordinate
+        //                var area = [oldCoordinates, newCoordinates]
+        //                let polyline = MKPolyline(coordinates: &area, count: area.count)
+        //                mapView.addOverlay(polyline)
+        //            }
+        //            print("present location : \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
+        //        }
         guard let location = locations.last else { return }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
@@ -181,34 +182,34 @@ extension CreateMapViewController: CLLocationManagerDelegate {
 
 extension CreateMapViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let center = getCenterLocation(for: mapView)
-        let geoCoder = CLGeocoder()
-        
-        guard let previouseLocation = self.previouseLocation else { return }
-        
-        guard center.distance(from: previouseLocation) > 50 else { return }
-        self.previouseLocation = center
-        
-        geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
-            }
-            guard let placemark = placemarks?.first else {
-                // TODO: Create an alert to inform the user
-                return
-            }
-            
-            let streetNumber = placemark.subThoroughfare ?? ""
-            let streetName = placemark.thoroughfare ?? ""
-            
-            DispatchQueue.main.async {
-                self.addressLabel.text = "\(streetNumber) \(streetName)"
-            }
-        }
-    }
+//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        let center = getCenterLocation(for: mapView)
+//        let geoCoder = CLGeocoder()
+//
+//        guard let previouseLocation = self.previouseLocation else { return }
+//
+//        guard center.distance(from: previouseLocation) > 50 else { return }
+//        self.previouseLocation = center
+//
+//        geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
+//            guard let self = self else { return }
+//
+//            if let error = error {
+//                print ("Error in \(#function) : \(error.localizedDescription) \n----\n \(error)")
+//            }
+//            guard let placemark = placemarks?.first else {
+//                // TODO: Create an alert to inform the user
+//                return
+//            }
+//
+//            let streetNumber = placemark.subThoroughfare ?? ""
+//            let streetName = placemark.thoroughfare ?? ""
+//
+//            DispatchQueue.main.async {
+//                self.addressLabel.text = "\(streetNumber) \(streetName)"
+//            }
+//        }
+//    }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         let annotationView = views[0]
@@ -220,7 +221,6 @@ extension CreateMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .green
         return renderer

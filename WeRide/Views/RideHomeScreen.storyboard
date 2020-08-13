@@ -235,6 +235,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <gestureRecognizers/>
                                 <connections>
+                                    <outlet property="delegate" destination="CiN-wk-1Rp" id="Q3o-ed-Thn"/>
                                     <outletCollection property="gestureRecognizers" destination="3Ka-kM-M6G" appends="YES" id="kaq-cI-1kx"/>
                                 </connections>
                             </mapView>
@@ -302,6 +303,7 @@
                         <viewLayoutGuide key="safeArea" id="0nS-Dg-shb"/>
                     </view>
                     <navigationItem key="navigationItem" id="2Zy-aE-9yC">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="qCe-vE-vnL">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="CiN-wk-1Rp" id="WNZ-ae-eKb"/>
