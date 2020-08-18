@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TeZ-WL-EBe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TeZ-WL-EBe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,10 +36,10 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="23V-so-NkX">
-                                <rect key="frame" x="40" y="408" width="334" height="60"/>
+                                <rect key="frame" x="40" y="434" width="334" height="34"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-MZ-rQQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -63,7 +63,11 @@
                                 </items>
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZp-p5-d1c">
-                                <rect key="frame" x="86" y="98" width="242" height="240"/>
+                                <rect key="frame" x="107" y="98" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hZp-p5-d1c" secondAttribute="height" multiplier="1:1" id="6Bc-Hu-kj7"/>
+                                    <constraint firstAttribute="height" constant="200" id="jza-ZJ-hvH"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="tJJ-XT-IIH" kind="embed" id="QyV-D2-Ygi"/>
                                 </connections>
@@ -71,18 +75,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="hZp-p5-d1c" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="86" id="15Y-BP-t5z"/>
                             <constraint firstAttribute="bottom" secondItem="hlU-Rb-HIT" secondAttribute="bottom" constant="167" id="24n-di-0oG"/>
                             <constraint firstItem="23V-so-NkX" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="40" id="6PZ-aD-SYI"/>
                             <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="hlU-Rb-HIT" secondAttribute="trailing" constant="40" id="CG8-fp-Vx0"/>
                             <constraint firstItem="zWH-ht-VE3" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="40" id="Ddc-TB-DhV"/>
-                            <constraint firstAttribute="bottom" secondItem="hZp-p5-d1c" secondAttribute="bottom" constant="558" id="JBC-8P-s35"/>
+                            <constraint firstItem="hZp-p5-d1c" firstAttribute="centerX" secondItem="UTs-AD-cgw" secondAttribute="centerX" id="LHd-P8-bDs"/>
                             <constraint firstItem="hZp-p5-d1c" firstAttribute="top" secondItem="TVh-Ud-5kf" secondAttribute="bottom" constant="10" id="Pi6-F4-hhn"/>
                             <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="23V-so-NkX" secondAttribute="trailing" constant="40" id="RhP-HV-7yD"/>
                             <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="zWH-ht-VE3" secondAttribute="trailing" constant="40" id="T7g-A3-Egr"/>
                             <constraint firstItem="hlU-Rb-HIT" firstAttribute="centerX" secondItem="zWH-ht-VE3" secondAttribute="centerX" id="XNq-UD-3z0"/>
-                            <constraint firstItem="23V-so-NkX" firstAttribute="top" secondItem="hZp-p5-d1c" secondAttribute="bottom" constant="70" id="ZYf-Lf-38y"/>
-                            <constraint firstItem="UTs-AD-cgw" firstAttribute="trailing" secondItem="hZp-p5-d1c" secondAttribute="trailing" constant="86" id="d6v-Nq-Ua8"/>
                             <constraint firstItem="hlU-Rb-HIT" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" constant="40" id="jRT-x2-N8j"/>
                             <constraint firstItem="TVh-Ud-5kf" firstAttribute="leading" secondItem="UTs-AD-cgw" secondAttribute="leading" id="jry-5N-bff"/>
                             <constraint firstItem="TVh-Ud-5kf" firstAttribute="top" secondItem="UTs-AD-cgw" secondAttribute="top" id="m3m-Yb-Klx"/>

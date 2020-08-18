@@ -35,7 +35,10 @@ class CreateMapViewController: UIViewController {
     
     //MARK: -Actions
     @IBAction func LongTapGestureTapped(_ sender: Any) {
-        addAnnotationPin()
+     
+    }
+    @IBAction func dropPinButtonTapped(_ sender: Any) {
+           addAnnotationPin()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
