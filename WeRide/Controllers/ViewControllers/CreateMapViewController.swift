@@ -30,7 +30,7 @@ class CreateMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
-       // addressLabel.isHidden = true
+        addressLabel.text = ""
     }
     
     //MARK: -Actions

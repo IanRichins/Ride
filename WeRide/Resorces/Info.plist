@@ -61,14 +61,14 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location is required to create a Ride!</string>
+	<string>location is required to center the map on your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is required to create a Ride!</string>
+	<string>location is required to center the map on your location</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Your location is required to create a Ride!</string>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access to your camera to add photos </string>
+	<string>We need access to the camera to add profile photos </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need access to your camera to add photos </string>
+	<string>We need access to your library to add profile photos </string>
 </dict>
 </plist>

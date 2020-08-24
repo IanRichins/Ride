@@ -24,13 +24,13 @@ class PhotoPickerViewController: UIViewController {
     //MARK: -Properties
     let user = UserController.shared.currentUser
      let imagePicker = UIImagePickerController()
-    //MARK: -Set Delegate
     weak var delegate: PhotoPickerDelegate?
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+    imagePicker.delegate = self
+        updateViews()
     }
     
     //MARK: -Actions
@@ -55,17 +55,26 @@ class PhotoPickerViewController: UIViewController {
     }
     
     //MARK: -Helper
-    func setupViews() {
-        if let user = user {
-            photoImageView.image = user.profilePhoto
-        } else {
-            photoImageView.image = .add
-        }
-           photoImageView.contentMode = .scaleAspectFill
-           photoImageView.clipsToBounds = true
-        photoImageView.backgroundColor = .lightGray
-           imagePicker.delegate = self
-       }
+    func updateViews() {
+             DispatchQueue.main.async {
+                 guard let user = UserController.shared.currentUser else { return }
+                 self.photoImageView.image = user.profilePhoto
+                self.photoImageView.contentMode = .scaleAspectFill
+                self.photoImageView.clipsToBounds = true
+                self.photoImageView.backgroundColor = .lightGray
+             }
+         }
+//    func setupViews() {
+//        if let user = user {
+//            photoImageView.image = user.profilePhoto
+//        } else {
+//            photoImageView.image = .add
+//        }
+//           photoImageView.contentMode = .scaleAspectFill
+//           photoImageView.clipsToBounds = true
+//        photoImageView.backgroundColor = .lightGray
+//
+//       }
     
 } // END OF CLASS
 
@@ -99,9 +108,7 @@ extension PhotoPickerViewController: UIImagePickerControllerDelegate, UINavigati
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
-            guard let delegate = delegate
-                else { return }
-            delegate.photoPickerSelected(image: pickedImage)
+            delegate?.photoPickerSelected(image: pickedImage)
             photoImageView.image = pickedImage
 
         }

@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="height" constant="200" id="jza-ZJ-hvH"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="tJJ-XT-IIH" kind="embed" id="QyV-D2-Ygi"/>
+                                    <segue destination="tJJ-XT-IIH" kind="embed" identifier="PhotoPicker" id="QyV-D2-Ygi"/>
                                 </connections>
                             </containerView>
                         </subviews>
