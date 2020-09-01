@@ -45,8 +45,12 @@ class RideController {
     }
     
     func fetchRide(completion: @escaping (Result<[Ride], UserError>) -> Void) {
-        let predicate = NSPredicate(value: true)
+        guard let user = UserController.shared.currentUser else { return }
+        let reference = CKRecord.Reference(recordID: user.ckRecordID, action: .deleteSelf)
+        let predicate = NSPredicate(format: "userReference == %@", reference)
+        let sort = NSSortDescriptor(key: "rideTitle", ascending: true)
         let query = CKQuery(recordType: RideStrings.typeKey, predicate: predicate)
+        query.sortDescriptors = [sort]
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -54,9 +58,15 @@ class RideController {
             }
             
             guard let records = records else { return completion(.failure(.couldNotUnwrap))}
+            
             let rides = records.compactMap({Ride(ckRecord: $0)})
+            self.rides.removeAll()
             for ride in rides {
-                self.currentRide = ride
+                print("Found some rides!")
+                self.rides.append(ride)
+//                if ride.ckRecordID == user.ckRecordID {
+//                    self.rides.append(ride)
+               // }
             }
             
             completion(.success(rides))

@@ -65,6 +65,7 @@ class RideHomeScreenViewController: UIViewController {
         yourRidesButton.layer.cornerRadius = yourRidesButton.frame.height / 2
         profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.height / 2
         profilePhotoImageView.clipsToBounds = true
+        profilePhotoImageView.contentMode = .scaleAspectFill
         self.view.addBackground()
     }
     

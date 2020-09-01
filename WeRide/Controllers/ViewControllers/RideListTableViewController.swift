@@ -35,8 +35,8 @@ class RideListTableViewController: UITableViewController {
     func loadData() {
         RideController.shared.fetchRide { (result) in
             switch result {
-            case .success(let rides):
-                RideController.shared.rides = rides
+            case .success(_):
+//                RideController.shared.rides = rides
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
